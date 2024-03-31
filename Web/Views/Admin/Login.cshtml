@@ -1,0 +1,82 @@
+﻿@model LoginViewModel
+@{
+    ViewData["Title"] = "تسجيل الدخول";
+    Layout = "";
+}
+
+<head>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
+
+    <link rel="stylesheet" href="~/css/login.css" asp-append-version="true" />
+    <link href="https://kit-pro.fontawesome.com/releases/v5.15.4/css/pro.min.css" rel="stylesheet">
+</head>
+
+<main dir="rtl">
+    <section class="registerSection" style="height:100vh">
+        <div class="row" style="margin-left:0 !important;height:100%">
+            <div class="col-md-5" style="background: linear-gradient( 180deg,#00b8cd 0,#01b5b6 100%); z-index: 1000">
+                <div style="display: flex;justify-content: center;align-items: center;height: 100%;">
+                    <img src="../images/logo/logo1.png" style="width:240px" />
+
+                </div>
+
+
+            </div>
+
+            <div class="col-md-7" style="background:#fff">
+                <div class="container-fluid">
+
+                    <div class="page">
+                        <div class="row" style="align-items: center;height: 100vh;">
+                            <div class="col-md-8" style="margin: 0 auto;">
+                                <div class="title" style="text-align:center">
+                                    <h3 style="font-size: 36px;">تسجيل الدخول</h3>
+                                    <p style="font-size: 16px;">سجل الدخول واحجز مع افضل الدكاترة في مصر والوطن العربي</p>
+                                </div>
+                                <form asp-action="Login">
+                                    <div class="field">
+                                        <div class="input-group" id="userEmailInput">
+                                            <div class="input-group-prepend">
+                                                <label class="input-group-text" for="userEmail">
+                                                    <i class="far fa-envelope" aria-hidden="true"></i>
+                                                </label>
+                                            </div>
+                                            <div class="prepend-divider"></div>
+                                            <input type="email" asp-for="email" required="" value="" class="form-control" placeholder="البريد الإلكتروني" id="userEmail">
+                                        </div>
+                                    </div>
+
+                                    <div class="field">
+                                        <div class="input-group" id="userPasswordInput">
+                                            <div class="input-group-prepend">
+                                                <label class="input-group-text" for="userPassword">
+                                                    <i class="fas fa-lock" aria-hidden="true"></i>
+                                                </label>
+                                            </div>
+                                            <div class="prepend-divider"></div>
+                                            <input type="password" asp-for="password" autocomplete="off" class="form-control" placeholder="كلمة المرور" id="userPassword" value="">
+                                        </div>
+                                    </div>
+
+                                    <div class="button-group mt-3 mb-3">
+                                        <button type="submit" class="btn btn-standard next" style="width:100%;height:55px">تسجيل الدخول</button>
+                                    </div>
+                                </form>
+
+
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+    </section>
+
+</main>
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns" crossorigin="anonymous"></script>

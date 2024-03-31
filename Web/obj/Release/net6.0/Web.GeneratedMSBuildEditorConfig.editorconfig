@@ -1,0 +1,164 @@
+is_global = true
+build_property.TargetFramework = net6.0
+build_property.TargetPlatformMinVersion = 
+build_property.UsingMicrosoftNETSdkWeb = true
+build_property.ProjectTypeGuids = 
+build_property.InvariantGlobalization = 
+build_property.PlatformNeutralAssembly = 
+build_property._SupportedPlatformList = Linux,macOS,Windows
+build_property.RootNamespace = Web
+build_property.RootNamespace = Web
+build_property.ProjectDir = F:\Projects\Healthcare-Booking-Platform\Web\
+build_property.RazorLangVersion = 6.0
+build_property.SupportLocalizedComponentNames = 
+build_property.GenerateRazorMetadataSourceChecksumAttributes = true
+build_property.MSBuildProjectDirectory = F:\Projects\Healthcare-Booking-Platform\Web
+build_property._RazorSourceGeneratorDebug = 
+
+[F:/Projects/Healthcare-Booking-Platform/Web/Views/Admin/Doctor.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5cRG9jdG9yLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/Projects/Healthcare-Booking-Platform/Web/Views/Admin/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5cSW5kZXguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/Projects/Healthcare-Booking-Platform/Web/Views/Admin/Login.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5cTG9naW4uY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/Projects/Healthcare-Booking-Platform/Web/Views/Admin/Massages.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5cTWFzc2FnZXMuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/Projects/Healthcare-Booking-Platform/Web/Views/Admin/Offers.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5cT2ZmZXJzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/Projects/Healthcare-Booking-Platform/Web/Views/Appointments/AddAppointments.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQXBwb2ludG1lbnRzXEFkZEFwcG9pbnRtZW50cy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/Projects/Healthcare-Booking-Platform/Web/Views/Appointments/BookAppointment.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQXBwb2ludG1lbnRzXEJvb2tBcHBvaW50bWVudC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/Projects/Healthcare-Booking-Platform/Web/Views/Appointments/BookOffer.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQXBwb2ludG1lbnRzXEJvb2tPZmZlci5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/Projects/Healthcare-Booking-Platform/Web/Views/Appointments/UserAppointments.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQXBwb2ludG1lbnRzXFVzZXJBcHBvaW50bWVudHMuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/Projects/Healthcare-Booking-Platform/Web/Views/ContactUs/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ29udGFjdFVzXEluZGV4LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/Projects/Healthcare-Booking-Platform/Web/Views/Doctors/Appointments.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRG9jdG9yc1xBcHBvaW50bWVudHMuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/Projects/Healthcare-Booking-Platform/Web/Views/Doctors/ChangePassword.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRG9jdG9yc1xDaGFuZ2VQYXNzd29yZC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/Projects/Healthcare-Booking-Platform/Web/Views/Doctors/Doctor.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRG9jdG9yc1xEb2N0b3IuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/Projects/Healthcare-Booking-Platform/Web/Views/Doctors/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRG9jdG9yc1xJbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/Projects/Healthcare-Booking-Platform/Web/Views/Doctors/Login.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRG9jdG9yc1xMb2dpbi5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/Projects/Healthcare-Booking-Platform/Web/Views/Doctors/Profile.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRG9jdG9yc1xQcm9maWxlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/Projects/Healthcare-Booking-Platform/Web/Views/Doctors/Register.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRG9jdG9yc1xSZWdpc3Rlci5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/Projects/Healthcare-Booking-Platform/Web/Views/Doctors/UpdateAccount.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRG9jdG9yc1xVcGRhdGVBY2NvdW50LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/Projects/Healthcare-Booking-Platform/Web/Views/Doctors/UpdateDetails.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRG9jdG9yc1xVcGRhdGVEZXRhaWxzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/Projects/Healthcare-Booking-Platform/Web/Views/Home/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxJbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/Projects/Healthcare-Booking-Platform/Web/Views/Offers/AddOffer.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcT2ZmZXJzXEFkZE9mZmVyLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/Projects/Healthcare-Booking-Platform/Web/Views/Offers/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcT2ZmZXJzXEluZGV4LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/Projects/Healthcare-Booking-Platform/Web/Views/Offers/MyOffers.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcT2ZmZXJzXE15T2ZmZXJzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/Projects/Healthcare-Booking-Platform/Web/Views/Offers/Offer.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcT2ZmZXJzXE9mZmVyLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/Projects/Healthcare-Booking-Platform/Web/Views/Shared/Error.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXEVycm9yLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/Projects/Healthcare-Booking-Platform/Web/Views/Shared/_AdminLayout.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9BZG1pbkxheW91dC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/Projects/Healthcare-Booking-Platform/Web/Views/Shared/_DoctorLayout.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9Eb2N0b3JMYXlvdXQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/Projects/Healthcare-Booking-Platform/Web/Views/Shared/_Footer.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9Gb290ZXIuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/Projects/Healthcare-Booking-Platform/Web/Views/Shared/_NavBar.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9OYXZCYXIuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/Projects/Healthcare-Booking-Platform/Web/Views/Shared/_ValidationScriptsPartial.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/Projects/Healthcare-Booking-Platform/Web/Views/User/Login.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVXNlclxMb2dpbi5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/Projects/Healthcare-Booking-Platform/Web/Views/User/Profile.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVXNlclxQcm9maWxlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/Projects/Healthcare-Booking-Platform/Web/Views/User/Register.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVXNlclxSZWdpc3Rlci5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/Projects/Healthcare-Booking-Platform/Web/Views/User/Users.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcVXNlclxVc2Vycy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/Projects/Healthcare-Booking-Platform/Web/Views/_ViewImports.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdJbXBvcnRzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/Projects/Healthcare-Booking-Platform/Web/Views/_ViewStart.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdTdGFydC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/Projects/Healthcare-Booking-Platform/Web/Views/Shared/_Layout.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9MYXlvdXQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = b-lzldzk1rll

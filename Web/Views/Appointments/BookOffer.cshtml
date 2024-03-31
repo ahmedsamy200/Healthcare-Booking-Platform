@@ -1,0 +1,219 @@
+﻿@model IEnumerable<DoctorAppointmentsViewModel>
+@using System.Globalization;
+
+@{
+    ViewData["Title"] = "حجز معاد";
+}
+
+<head>
+    <link rel="stylesheet" href="~/css/contactUs.css" asp-append-version="true" />
+</head>
+
+<section class="headSection" style="height: 275px;">
+    <div class="container">
+        <div class="Content" style="padding-top: 100px;">
+            <h1> تفاصيل الحجز</h1>
+            @{
+                var doctorName = Model.Select(x => x.doctorName).FirstOrDefault();
+                var doctorAddress = Model.Select(x => x.address).FirstOrDefault();
+                var doctorID = Model.Select(x => x.doctorID).FirstOrDefault();
+             } 
+            <h3>مع الدكتور <span>@doctorName</span></h3>
+        </div>
+    </div>
+</section>
+
+<section class="appointmentSection mt-5">
+    <div class="container">
+        <div class="infoCard times">
+            <div class="time text-center">
+                <div class="row">
+                    <div class="col-1">
+                        <p style="font-weight:600"> اليوم </p>
+
+                    </div>
+                    <div class="col-10 col-sm-4">
+                        <div style="text-align:center">
+                            <select id="selectDay" class="selectpicker">
+                                <option disabled selected value="">اختر اليوم </option>
+                                @foreach (var item in Model)
+                                {
+                                    <option style="font-weight:600" value="@item.dayAr">@item.dayAr</option>
+
+                                }
+
+
+
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-1">
+                        <p style="font-weight:600"> الساعة </p>
+
+                    </div>
+                    <div class="col-10 col-sm-4">
+                        <div style="text-align:center">
+                            <select id="from" class="selectpicker timesSelectPicker">
+                                <option disabled selected value="">اختر الوقت </option>
+                              
+
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="col-6 col-sm-2">
+                        <button type="submit" id="add" class="btn btn-standard " style="font-weight:700;width:70%">حجز</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="infoCard">
+            <div class="appointmentDetails d-flex">
+                <img src="~/images/img/calender.svg" class="preSvg">
+                <p style="font-size:18px"> تفاصيل الحجز</p>
+            </div>
+
+            <div class="content" style="justify-content:center">
+                <div class="info d-flex">
+                    <p class="infoText">اسم الطبيب</p>
+                    <p style="font-weight: bold;">@doctorName</p>
+                </div>
+                <div class="info d-flex">
+                    <p class="infoText">تاريخ الحجز </p>
+                    <p style="font-weight: bold;" id="appointment"> 
+                      <span id="selectedDay"></span>
+                      <span id="selectedTime"></span>
+                    </p>
+                </div>
+                <div class="info d-flex">
+                    <p class="infoText">عنوان العيادة </p>
+                    <p style="font-weight: bold;">@doctorAddress</p>
+                </div>
+
+            </div>
+
+
+        </div>
+    </div>
+    <input type="hidden" id="doctorID" value="@doctorID"/>
+</section>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+<script>
+    $(document).ready(function () {
+        $("#doctors").addClass("active");
+
+        $("#add").on("click", function (event) {
+           Add();
+        });
+
+        $(".selectpicker").selectpicker({
+            noneSelectedText: 'اختر الوقت' 
+        });
+
+        $("#selectDay").change(function () {
+            var day = $('#selectDay').val();
+            var doctorID = $('#doctorID').val();
+            $('#selectedDay').text(day)
+           $.ajax({
+               url: "/Appointments/GetDayHours?dayAr=" + day +
+                    "&doctorID=" + doctorID,
+                type: "GET",
+                contentType: "application/json;charset=utf-8",
+                dataType: "json",
+                success: function (result) {
+                    var html = '';
+                    if (result.length == 0) {
+
+                    }
+
+                    html += '<option disabled selected value="">اختر الوقت </option>';
+
+                    $.each(result, function (key, item) {
+                        var time = new Date(item);
+                        html += '<option style="font-weight:600" value="' + item + '">' + time.toLocaleString('ar-US', { hour: 'numeric', minute: 'numeric', hour12: true }) +'</option>';
+
+                    });
+                    $('.timesSelectPicker').empty();
+
+                    $('#from').html(html);
+                    $('.timesSelectPicker').selectpicker('refresh');
+                }
+            });
+
+        });
+
+        $("#from").on("change", function () {
+            var from = $('#from').val();
+            var time = new Date(from);
+           
+            $('#selectedTime').text(time.toLocaleString('ar-US', { hour: 'numeric', minute: 'numeric', hour12: true }));
+        });
+
+    });
+
+    function Add() {
+        var doctorID = $('#doctorID').val();
+        var day = $('#selectedDay').text();
+        var from = $('#from').val();
+        if (from == null || from == '') {
+            Swal.fire({
+                icon: 'info',
+                title: 'يجب تحديد ساعه الحجز',
+                showConfirmButton: false,
+                timer: 1500
+            })
+        }
+        else {
+            $.ajax({
+                url: '/Appointments/BookAppointment?doctorID=' + doctorID +
+                    '&dayAr=' + day +
+                    '&from=' + from,
+                type: 'POST',
+                data: '',
+                processData: false,
+                contentType: false,
+                beforeSend: function () {
+                    $('#add').prop('disabled', true);
+                    $(".spinner-container").show();
+
+                },
+                success: function (result) {
+                    if (result == "success") {
+                        Swal.fire({
+                            icon: 'success',
+                            title: 'تم حجز المعاد',
+                            showConfirmButton: false,
+                            timer: 1500
+                        });
+                        window.location.href = "/Appointments/UserAppointments";
+
+                    }
+                    else if (result == "notAvailable") {
+                        Swal.fire({
+                            icon: 'info',
+                            title: 'هذا المعاد غير متوفر',
+                            showConfirmButton: false,
+                            timer: 1500
+                        })
+
+                    }
+
+                },
+                error: function (e) {
+                    Notiflix.Notify.Failure('حدث خطا ما يرجي اعاده المحاوله');
+                    alert(e.responseText);
+                },
+                complete: function () {
+
+                    $('#add').prop('disabled', false);
+                    $(".spinner-container").hide();
+
+                },
+            });
+
+        }
+    }
+
+</script> 

@@ -1,0 +1,106 @@
+﻿@model OfferViewModel
+
+@{
+    ViewData["Title"] = "العروض";
+    Layout = "_AdminLayout";
+}
+
+<br />
+<br />
+
+<div class="container mb-5">
+    <h3 style="text-align: right; color: #333333c2;">العروض </h3>
+    <br />
+    <div class="container">
+
+        <table class="table table-hover table-striped mt-4" style="text-align: center; table-layout: fixed; width: 100%; word-break: break-word;">
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">الصورة</th>
+                    <th scope="col">اسم الطيبيب</th>
+                    <th scope="col">عنوان العرض</th>
+                    <th scope="col">سعر العرض</th>
+                    <th scope="col">المحافظة </th>
+                    <th scope="col"> </th>
+
+                </tr>
+            </thead>
+            <tbody class="tbody">
+            </tbody>
+        </table>
+
+    </div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="~/lib/notiflix-aio-2.7.0.min.js"></script>
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
+
+<script>
+    $(document).ready(function () {
+        $("#offers").addClass("active");
+        GetAllOffers();
+      
+    });
+
+
+    function GetAllOffers() {
+        $.ajax({
+            url: "/Offers/GetAllOffers",
+            type: "GET",
+            contentType: "application/json;charset=utf-8",
+            dataType: "json",
+            success: function (result) {
+                var html = '';
+                if (result.length == 0) {
+                    $('.noItems').show();
+
+                }
+                var counter = 1;
+                $.each(result, function (key, item) {
+                    html += '<tr>';
+                    html += '<th scope="row">' + counter + '</th>';
+                    html += '<td>' + '<img style="width:60px;height:60px;border-radius:10px;margin-left:0px;margin-right: 10px;" src="/images/offers/' + item.mainPhoto + '" />' + '</td>';
+                    html += '<td scope="row">' + item.doctorName + '</td>';
+                    html += '<td scope="row">' + item.title + '</td>';
+                    html += '<td scope="row">' + item.price + ' جنية' + '</td>';
+                    html += '<td scope="row">' + item.city + '</td>';
+
+                    html += '<td>';
+                    html += '<a href="javascript:void(0);" onclick=Delete(' + item.id + '); return false;><i class="fas fa-times" style="font-size: 20px;color: red;"></i></a>';
+                    html += '</td>';
+                    html += '</tr>';
+
+                    counter++;
+
+                });
+                $('.tbody').html(html);
+
+            }
+        });
+    }
+
+    function Delete(id) {
+        if (confirm("تاكيد الحذف")) {
+            $.ajax({
+                type: "POST",
+                dataType: false,
+                url: "/Offers/DeleteOffer",
+                data: { id: id },
+                success: function (data, xhr, status) {
+                    Notiflix.Notify.Success('تم الحذف');
+                    GetAllOffers();
+                },
+                error: function (e) {
+                    alert(e.responseText);
+                    Notiflix.Notify.Failure('حدث خطا ما يرجي اعاده المحاوله');
+                }
+            });
+        }
+    }
+
+
+</script>

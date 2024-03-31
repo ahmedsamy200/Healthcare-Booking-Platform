@@ -1,0 +1,191 @@
+﻿@model OfferViewModel
+@using System.Globalization;
+@using Microsoft.AspNetCore.Http;
+
+
+@{
+    ViewData["Title"] = "العروض";
+
+    if (Context.Session.GetString("DoctorID") != null)
+    {
+        Layout = "_DoctorLayout";
+
+    }
+}
+
+
+
+<head>
+    <link rel="stylesheet" href="~/css/offer.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/doctor.css" asp-append-version="true" />
+
+</head>
+
+<section class="headSection">
+    <div class="container">
+        <div class="Content">
+            <h2> @Model.title </h2>
+            <p>@Model.subTitle</p>
+        </div>
+    </div>
+</section>
+
+<section class="offerImgs">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="mainImg mb-4">
+                    <img src="/images/offers/@Model.mainPhoto" style="width:100%" />
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="otherImages">
+                    <div class="row">
+                        @foreach (var item in ViewBag.offerPhotos)
+                        {
+                            <div class="col-6">
+                                <div class="img">
+                                    <img src="/images/offers/@item.image" />
+                                </div>
+                            </div>
+
+                        }
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="doctorInfoSection">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-7">
+                <div class="infoCard">
+                    <h4 style="color: #00b8cd;font-size: 29px;">@Model.title</h4>
+                    <p>@Model.title</p>
+                </div>
+
+                <div class="infoCard">
+                    <h4>تفاصيل العرض</h4>
+                    <div class="line-divider"></div>
+                    <p>@Model.subTitle</p>
+                </div>
+
+                <div class="infoCard">
+                    <h4> العنوان</h4>
+                    <div class="line-divider"></div>
+                    <p>@Model.address</p>
+                </div>
+            </div>
+
+            <div class="col-md-5">
+                <div class="infoCard">
+                    <div class="d-flex priceAndViews">
+                        <p class="views">عدد مرات المشاهدة <br><span class="colored">567</span></p>
+                        <p class="price">سعر الكشف <br><span class="colored">@Model.price جنيه </span></p>
+                    </div>
+                    @{ 
+                        Model.doctorImage = Model.doctorImage ?? "default.jpg";
+                    }
+                    <div class="d-flex justify-content-center align-content-center mt-2">
+                        <div class="docotrInfo">
+                            <img src="/images/doctors/@Model.doctorImage" />
+                            <div style="margin-top:-10px">
+                                <p class="doctorName">@Model.doctorName</p>
+                                <span class="doctorAddress">@Model.city</span>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+                <!--table times for doctor-->
+                <div class="infoCard">
+                    <div class="tblHead">
+                        <div class="tblTitleText">
+                            <h4>احجز من مكانك وادفع لما توصل</h4>
+                            <h5>الدكتور يشترط الحجز المسبق</h5>
+                        </div>
+                    </div>
+
+                    <div class="days" style="justify-content:center">
+                        @if (ViewBag.DoctorAppointments == null)
+                        {
+                            <p style=" font-size: 20px; margin-right: 55px;">لا توجد مواعيد</p>
+                        }
+                        else
+                        {
+                            <div class="owl-carousel ">
+
+                                @foreach (var item in ViewBag.DoctorAppointments)
+                                {
+                                    <div class="day">
+                                        <div class="tblTimes">
+                                            <div class="dayContent">
+                                                <p class="columnTitle">@item.dayAr</p>
+                                                <div class="columnTimes">
+                                                    <p dir="rtl">من   @item.from.ToString("HH:mm tt", new CultureInfo("ar-AE"))</p>
+                                                    <p>الي @item.to.ToString("hh:mm tt", new CultureInfo("ar-AE"))</p>
+                                                </div>
+                                                <a href="/Appointments/BookAppointment/@item.Id" class="btnBook">احجز</a>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                }
+
+                            </div>
+
+                        }
+
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+
+<script>
+    $(document).ready(function () {
+        $("#offers").addClass("active");
+
+        $('.owl-carousel').owlCarousel({
+            rtl: true,
+            loop: true,
+            autoplay: true,
+            navText: ["<i class='fal fa-long-arrow-right ar'></i>", "<i class='fal fa-long-arrow-left ar'></i>"],
+            autoplayTimeout: 5000,
+
+            nav: true,
+            responsive: {
+                0: {
+                    items: 1
+                },
+                412: {
+                    items: 2
+                },
+                600: {
+                    items: 2
+                },
+                720: {
+                    items: 1
+                },
+                1180: {
+                    items: 2
+                },
+                1185: {
+                    items: 3
+                }
+            }
+        })
+    })
+
+
+</script>

@@ -1,0 +1,277 @@
+﻿@model SpecializationViewModel
+@{
+    ViewData["Title"] = "Home Page";
+    Layout = "_AdminLayout";
+
+}
+
+<br />
+<br />
+<div class="container">
+    <h3 style="text-align: right; color: #333333c2;">التخصصات </h3>
+    <br />
+    <div class="container">
+        <div class="row" style="justify-content:space-between">
+            <div class=" col-xm-6">
+                <a class="btn btn-standard openModal" href="#" data-toggle="modal" data-target="#myModal"> اضافه تخصص</a>
+            </div>
+            <div class=" col-xm-6">
+                <input type="text" id="txtSearch" class="form-control" placeholder="ادخل اسم التخصص"/>
+            </div>
+        </div>
+
+        <table class="table table-hover table-striped mt-4" style="text-align: center; table-layout: fixed; width: 100%; word-break: break-word;">
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">التخصص</th>
+                    <th scope="col"></th>
+                </tr>
+            </thead>
+            <tbody class="tbody">
+            </tbody>
+        </table>
+
+        <input type="hidden" id="hdnSpeID" />
+        <!-- Modal -->
+        <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">اضافه تخصص</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <form id="SpecializationForm">
+                        <div class="modal-body">
+                            <div>
+                                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                                <span style="font-weight: 600; color: #333333eb;">اسم التخصص</span>
+                                <input  asp-for="name" type="text" class="form-control pp txtspecialization" />
+                                <input id="hdnId" name="Id" value="0" type="hidden" />
+                                <span asp-validation-for="name" class="text-danger"></span>
+
+                            </div>
+
+                        </div>
+
+                        <div class="modal-footer">
+                            <button type="submit" id="btnAdd" class="btn btn-success Optionsbtn" onclick="Add()">حفظ</button>
+                            <button type="submit" id="btnUpdate" class="btn btn-success Optionsbtn" onclick="Update()">تعديل</button>
+                            <button type="submit" id="btnCancel" class="btn btn-danger Optionsbtn" data-dismiss="modal" onclick="ResetForm()">الغاء</button>
+                        </div>
+
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="~/lib/notiflix-aio-2.7.0.min.js"></script>
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
+<script>
+    $(document).ready(function () {
+        $("#index").addClass("active");
+        $("#btnUpdate").hide();
+        GetAllSpecializations();
+
+        $('.openModal').click(function () {
+            ResetForm();
+            $('#btnAdd').show();
+            $('#btnUpdate').hide();
+        });
+
+        $("#SpecializationForm").submit(function (e) {
+            e.preventDefault();
+        });
+
+        $("#txtSearch").keyup(function () {
+            var name = $("#txtSearch").val();
+            if (name == "") {
+                GetAllSpecializations();
+            } else {
+                $.ajax({
+                    url: "/Admin/GetSpecializationByName",
+                    data: { name: name },
+                    type: "GET",
+                    contentType: "application/json;charset=utf-8",
+                    dataType: "json",
+                    success: function (result) {
+                        var html = '';
+                        if (result.length == 0) {
+                            $('.noItems').show();
+
+                        }
+                        var counter = 1;
+                        $.each(result, function (key, item) {
+
+                            html += '<tr>';
+                            html += '<th scope="row">' + counter + '</th>';
+                            html += '<td scope="row">' + item.name + '</td>';
+                            html += '<td>';
+                            html += '<a href="javascript:void(0);" onclick=Edit(' + item.id + '); return false; data-toggle="modal" data-target="#myModal"><i class="fas fa-pen ml-4" style="font-size: 20px; color: #0b8283;"></i></a>';
+                            html += '<a href="javascript:void(0);" onclick=Delete(' + item.id + '); return false;><i class="fas fa-times" style="font-size: 20px;color: red;"></i></a>';
+                            html += '</td>';
+                            html += '</tr>';
+
+                            counter++;
+
+                        });
+                        $('.tbody').html(html);
+
+                    }
+                });
+
+            }
+
+        });
+
+
+    });
+
+    function GetAllSpecializations() {
+
+        $.ajax({
+            url: "/Admin/GetAllSpecializations",
+            type: "GET",
+            contentType: "application/json;charset=utf-8",
+            dataType: "json",
+            success: function (result) {
+                var html = '';
+                if (result.length == 0) {
+                    $('.noItems').show();
+
+                }
+                var counter = 1;
+                $.each(result, function (key, item) {
+
+                    html += '<tr>';
+                    html += '<th scope="row">' + counter + '</th>';
+                    html += '<td scope="row">' + item.name + '</td>';
+                    html += '<td>';
+                    html += '<a href="javascript:void(0);" onclick=Edit(' + item.id + '); return false; data-toggle="modal" data-target="#myModal"><i class="fas fa-pen ml-4" style="font-size: 20px; color: #0b8283;"></i></a>';
+                    html += '<a href="javascript:void(0);" onclick=Delete(' + item.id + '); return false;><i class="fas fa-times" style="font-size: 20px;color: red;"></i></a>';
+                    html += '</td>';
+                    html += '</tr>';
+
+                    counter++;
+
+                });
+                $('.tbody').html(html);
+
+            }
+        });
+    }
+
+    function Add() {
+        $('#btnAdd').show();
+        $('#btnUpdate').hide();
+        $.ajax({
+            url: '/Admin/AddSpecialization',
+            type: 'POST',
+            dataType: "json",
+            data: new FormData($("#SpecializationForm")[0]),
+            contentType: false,
+            processData: false,
+            success: function (result) {
+                if (result == "success") {
+                    $("#myModal").modal("hide");
+                    Notiflix.Notify.Success('تم الاضافه');
+                    GetAllSpecializations()
+                    ResetForm();
+                }
+                else if (result == "exist") {
+                    Notiflix.Notify.Failure('يوجد تخصص اخر بنفس الاسم');
+                    alert(e.responseText);
+
+                }
+
+            },
+            error: function (e) {
+                Notiflix.Notify.Failure('حدث خطا ما يرجي اعاده المحاوله');
+                alert(e.responseText);
+            }
+        });
+    }
+
+    function Edit(id) {
+        /*$('.text-danger').hide();*/
+        $('#btnAdd').hide();
+        $('#btnUpdate').show();
+        $('#hdnId').val(id);
+
+        $.ajax({
+            type: "GET",
+            dataType: "json",
+            url: "/Admin/GetSpecializationByID?id=" + id,
+            success: function (result) {
+                $.each(result, function (key, item) {
+                    $('#name').val(result.name);
+                    $('#hdnSpeID').val(result.Id);
+                })
+            }
+
+        })
+    }
+
+    function Update() {
+        var id = $('#hdnSpeID').val();
+        $.ajax({
+            url: "/Admin/UpdateSpecialization",
+            type: 'POST',
+            dataType: "json",
+            data: new FormData($("#SpecializationForm")[0]),
+            contentType: false,
+            processData: false,
+            success: function (result) {
+                if (result == "success") {
+                    $("#myModal").modal("hide");
+                    Notiflix.Notify.Success('تم التعديل');
+                    GetAllSpecializations();
+                    ResetForm();
+                }
+                else if (result == "exist") {
+                    Notiflix.Notify.Failure('يوجد تخصص اخر بنفس الاسم');
+                    alert(e.responseText);
+                }
+
+            },
+            error: function (e) {
+                Notiflix.Notify.Failure('حدث خطا ما يرجي اعاده المحاوله');
+                alert(e.responseText);
+            }
+
+        });
+
+    }
+
+    function Delete(id) {
+        if (confirm("تاكيد الحذف")) {
+            $.ajax({
+                type: "POST",
+                dataType: false,
+                url: "/Admin/DeleteSpecialization",
+                data: { id: id },
+                success: function (data, xhr, status) {
+                    Notiflix.Notify.Success('تم الحذف');
+                    GetAllSpecializations();
+                },
+                error: function (e) {
+                    alert(e.responseText);
+                    Notiflix.Notify.Failure('حدث خطا ما يرجي اعاده المحاوله');
+                }
+            });
+        }
+    }
+
+    function ResetForm() {
+        $('.txtspecialization').val('');
+    }
+
+
+</script>

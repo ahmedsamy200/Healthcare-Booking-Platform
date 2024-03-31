@@ -1,0 +1,226 @@
+﻿@model IEnumerable<OfferViewModel>
+@{
+    ViewData["Title"] = "الصفحة الرئيسية";
+}
+
+<head>
+    <link rel="stylesheet" href="~/css/home.css" asp-append-version="true" />
+
+</head>
+
+<section class="headerSection">
+    <div class="Content d-lg-block d-none">
+        <h2>نحن نهتم بك</h2>
+        <h3>احصل علي الرعاية التي تحتاجها من المحترفين الرائدين في مجالاتهم</h3>
+        <a asp-controller="Doctors" asp-action="Index">أطباء الطوارئ</a>
+    </div>
+</section>
+
+<section class="searchSection" style="margin-bottom:140px">
+    <div class="container-fluid">
+        <div class="search-box">
+            <div class="header">
+                <p>احجز دكتور</p>
+            </div>
+            <form asp-controller="Doctors" asp-action="Index" method="post">
+
+                <div class="row" style="padding: 20px 40px 25px 0;">
+                    <div class="col-xl col-md-6 mb-3">
+                        <select class="selectpicker" id="specialization" name="specialization" data-live-search="true" data-style="form-screen-picker speciality-picker" title="التخصص" tabindex="-98">
+                            <option value="" disabled="">اختار التخصص</option>
+                            @foreach (var item in ViewBag.specializations)
+                            {
+                                <option value="@item.name">@item.name</option>
+                            }
+
+
+                        </select>
+
+
+                    </div>
+
+                    <div class="col-xl col-md-6  mb-3">
+
+                        <select class="selectpicker" id="city" name="city" data-live-search="true" data-style="form-screen-picker City-picker" title="المحافظه" tabindex="-98">
+                            <option value="" disabled="">اختار المحافظه</option>
+                            @foreach (var item in ViewBag.cities)
+                            {
+                                <option value="@item.city">@item.city</option>
+                            }
+
+
+                        </select>
+                    </div>
+
+                    <div class="col-xl col-md-6  mb-3">
+
+                        <select class="selectpicker" id="doctor" name="doctorName" data-live-search="true" data-style="form-screen-picker Doctor-picker" title="الطبيب" tabindex="-98">
+                            <option value="" disabled="">اسم الدكتور</option>
+                            @foreach (var item in ViewBag.doctors)
+                            {
+                                <option value="@item.name">@item.name</option>
+                            }
+
+
+                        </select>
+
+                    </div>
+                    <div class="col-xl col-md-12 text-center">
+                        <button type="submit" id="searchBtn" class="btn btn-standard search-box-button">
+                            بحث
+                        </button>
+
+                    </div>
+
+                </div>
+            </form>
+
+        </div>
+    </div>
+</section>
+
+<section class="howSection" style="margin-bottom:140px">
+    <div class="container">
+        <h1 style="text-align:center">ازاى تستخدم الإسبتالية؟</h1>
+        <div class="title-highlight"></div>
+
+        <div class="row">
+            <div class="col-md-4">
+                <div class="howUse">
+                    <div class="howIcon">
+                        <i class="far fa-search-plus icon"></i>
+                    </div>
+                    <div class="howContent">
+                        <h3>ابحث عن دكتور</h3>
+                        <p>تقدر تبحث عن الدكتور بالتخصص والمكان اللي انت فيه</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="howUse">
+                    <div class="howIcon">
+                        <i class="fal fa-user-md icon"></i>
+                    </div>
+                    <div class="howContent">
+                        <h3>اختيار الدكتور</h3>
+                        <p>يمكنك المقارنة بين الأطباء حسب تقييم المرضي الاخرين</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="howUse">
+                    <div class="howIcon">
+                        <i class="fal fa-calendar-alt icon"></i>
+                    </div>
+                    <div class="howContent">
+                        <h3>احجز ميعادك</h3>
+                        <p>بعد ما تختار الدكتور اللي يناسبك بتقدر تحجز ميعادك اون لاين</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+</section>
+
+<section class="offersSection" style="margin-bottom:140px">
+    <div class="container">
+        <h1 style="text-align:center">عروض الإسبتالية</h1>
+        <div class="title-highlight"></div>
+
+        <div class="offersCarousel">
+            <div class="owl-carousel ">
+                @foreach (var item in Model)
+                {
+
+                    item.doctorImage = item.doctorImage ?? "default.jpg";
+
+                    <div class="offer">
+                        <a asp-controller="Offers" asp-action="offer" asp-route-id="@item.Id">
+                            <img class="offerImg" alt="img" src="~/images/offers/@item.mainPhoto">
+                        </a>
+
+
+                        <div class="offerContent">
+                            <h3>@item.title</h3>
+                            <p>@item.subTitle</p>
+                        </div>
+
+                        <div class="offerFooter">
+                            <div class="rigth">
+                                <img class="docImg" alt="img" src="~/images/doctors/@item.doctorImage" />
+                                <h6>د/@item.doctorName</h6>
+                                <p>@item.city</p>
+                            </div>
+
+                            <div class="left mt-2">
+                                <a asp-controller="Appointments" asp-action="BookOffer" asp-route-doctorID="@item.doctorID" class="btn-standard login" style="padding:7px 25px">احجز الان</a>
+                            </div>
+                        </div>
+                    </div>
+
+                }
+
+
+            </div>
+        </div>
+    </div>
+</section>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+<script>
+    $(document).ready(function () {
+       
+        $("#index").addClass("active");
+        $('.owl-carousel').owlCarousel({
+            rtl: true,
+            loop: true,
+            autoplay: true,
+            navText: ["<i class='fal fa-long-arrow-right ar'></i>", "<i class='fal fa-long-arrow-left ar'></i>"],
+            autoplayTimeout: 4000,
+            margin: 50,
+            nav: true,
+            dots: false,
+            responsive: {
+                0: {
+                    items: 1
+                },
+                600: {
+                    items: 1
+                },
+                720: {
+                    items: 2
+                },
+                1180: {
+                    items: 2
+                },
+                1185: {
+                    items: 3
+                }
+            }
+        })
+
+        if ($(window).width() < 1300) {
+            $('.owl-nav').hide();
+        }
+
+        $('.owl-carousel').each(function () {
+            
+            $('.owl-prev').attr('aria-label', 'owl');
+            $('.owl-next').attr('aria-label', 'owl');
+
+        });
+
+
+    });
+
+    $(function () {
+        $('select').selectpicker();
+    });
+
+
+</script>

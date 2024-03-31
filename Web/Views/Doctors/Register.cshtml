@@ -1,0 +1,365 @@
+﻿@model DoctorViewModel
+@{
+    ViewData["Title"] = " انشاء حساب";
+    Layout = "";
+}
+
+@* doctor register *@
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/css/bootstrap-select.min.css">
+    <link href="https://kit-pro.fontawesome.com/releases/v5.15.4/css/pro.min.css" rel="stylesheet">
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    <link rel="stylesheet" href="~/css/login.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/doctorRegister.css" asp-append-version="true" />
+</head>
+
+<style>
+    .page {
+        max-width: 650px;
+        margin: 0 auto;
+        text-align: center;
+        padding: 70px 10px;
+    }
+
+    .title {
+        text-align: center
+    }
+
+    .rigthSection {
+        background: linear-gradient( 180deg,#00b8cd 0,#01b5b6 100%);
+        z-index: 1000;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 20px 30px;
+        margin-top: 0;
+        width: 40%;
+        position: fixed;
+        height: 100vh;
+    }
+</style>
+
+<main dir="rtl">
+
+    <section class="registerSection doctorRegister">
+        <div class="row" >
+
+            <div class="col-lg-4" style="padding-right: 0;">
+
+                <div class="rigthSection">
+                    <a href="/Home/Index">
+                        <img src="../images/logo/logo1.png" />
+
+                    </a>
+                </div>
+
+            </div>
+
+            <div class="col-lg-8" style="background:#fff">
+                <div class="container-fluid">
+                   
+                    <div class="page">
+                        <div class="title">
+                            <h3>إنشاء حساب جديد</h3>
+                            <p>سجل واحجز مع افضل الدكاترة في مصر والوطن العربي</p>
+                        </div>
+                        <form id="registerForm">
+                            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+                            <div class="row">
+
+                                <div class="col-md-7 order-2 order-md-1 col-lg-8">
+
+
+                                    <div class="field">
+                                        <div class="input-group">
+                                            <div class="input-group-prepend">
+                                                <label class="input-group-text" for="name">
+                                                    <i class="far fa-user" aria-hidden="true"></i>
+                                                </label>
+                                            </div>
+                                            <div class="prepend-divider"></div>
+                                            <input type="text" asp-for="name" autocomplete="off" class="form-control" placeholder="الاسم بالكامل">
+
+                                        </div>
+                                        <span asp-validation-for="name" class="text-danger"></span>
+
+                                    </div>
+
+                                    <div class="field">
+                                        <div class="row">
+                                            <div class="col-9 userPhoneBox">
+                                                <div class="input-group">
+                                                    <div class="input-group-prepend">
+                                                        <label class="input-group-text" for="phone">
+                                                            <i class="fas fa-phone" aria-hidden="true"></i>
+                                                        </label>
+                                                    </div>
+                                                    <div class="prepend-divider"></div>
+                                                    <input type="tel" asp-for="phone" class="form-control" placeholder="رقم الهاتف">
+
+                                                </div>
+                                                <span asp-validation-for="phone" class="text-danger"></span>
+
+                                            </div>
+                                            <div class="col-3">
+
+                                                <div class="flag">
+                                                    <span>  20 +</span>
+                                                    <img src="../images/img/egypt.png" />
+
+                                                </div>
+
+                                            </div>
+
+                                        </div>
+
+                                    </div>
+
+                                    <div class="field">
+                                        <div class="input-group">
+                                            <div class="input-group-prepend">
+                                                <label class="input-group-text" for="email">
+                                                    <i class="far fa-envelope" aria-hidden="true"></i>
+                                                </label>
+                                            </div>
+                                            <div class="prepend-divider"></div>
+                                            <input type="email" asp-for="email" value="" class="form-control" placeholder="البريد الإلكتروني">
+                                        </div>
+                                        <span asp-validation-for="email" class="text-danger"></span>
+
+                                    </div>
+
+                                    <div class="field">
+                                        <div class="input-group" id="userSpeceficationInput">
+                                            <div class="input-group-prepend">
+                                                <label class="input-group-text" for="specializationID">
+                                                    <span class="speciality-icon"></span>
+                                                </label>
+                                            </div>
+                                            <div class="prepend-divider"></div>
+                                            <div class="dropdown bootstrap-select">
+                                                <select class="selectpicker" asp-for="specializationID" data-live-search="true" data-style="form-screen-picker" title="التخصص" tabindex="-98">
+                                                    <option value="" disabled="">اختار التخصص</option>
+                                                    @foreach (var item in ViewBag.specializations)
+                                                    {
+                                                        <option value="@item.Id">@item.name</option>
+                                                    }
+
+
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <span asp-validation-for="specializationID" class="text-danger"></span>
+
+                                    </div>
+
+                                    <div class="field">
+                                        <div class="input-group">
+                                            <div class="input-group-prepend">
+                                                <label class="input-group-text" for="cityID">
+                                                    <span class="pin-icon"></span>
+                                                </label>
+                                            </div>
+                                            <div class="prepend-divider"></div>
+                                            <div class="dropdown bootstrap-select">
+                                                <select class="selectpicker" asp-for="cityID" data-live-search="true" data-style="form-screen-picker" title="المحافظه" tabindex="-98">
+                                                    <option value="" disabled="">اختار المحافظه</option>
+                                                    @foreach (var item in ViewBag.cities)
+                                                    {
+                                                        <option value="@item.Id">@item.city</option>
+                                                    }
+
+
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <span asp-validation-for="cityID" class="text-danger"></span>
+
+                                    </div>
+
+                                    <div class="field">
+                                        <div class="input-group">
+                                            <div class="input-group-prepend">
+                                                <label class="input-group-text" for="price">
+                                                    <span class="price-icon"></span>
+                                                </label>
+                                            </div>
+                                            <div class="prepend-divider"></div>
+                                            <input type="text" asp-for="price" autocomplete="off" class="form-control" placeholder="سعر الكشف " value="">
+                                        </div>
+                                        <span asp-validation-for="price" class="text-danger"></span>
+
+                                    </div>
+
+                                    <div class="field">
+                                        <div class="radio-group">
+                                            <p id="UserGenderInput">النوع</p>
+                                            <div class="prepend-divider"></div>
+                                            <div class="gender">
+                                                <label for="UserGenderMale">
+                                                    <input asp-for="gender" value="male" type="radio">
+                                                    ذكر
+                                                </label>
+
+                                                <label for="UserGenderFemale">
+                                                    <input asp-for="gender" value="female" type="radio">
+                                                    أنثى
+                                                </label>
+                                            </div>
+                                        </div>
+                                        <span asp-validation-for="gender" class="text-danger"></span>
+
+                                    </div>
+
+                                    <div class="field">
+                                        <div class="input-group">
+                                            <div class="input-group-prepend">
+                                                <label class="input-group-text" for="password">
+                                                    <i class="fas fa-lock" aria-hidden="true"></i>
+                                                </label>
+                                            </div>
+                                            <div class="prepend-divider"></div>
+                                            <input type="password" asp-for="password" autocomplete="off" class="form-control" placeholder="كلمة المرور" value="">
+                                        </div>
+                                        <span asp-validation-for="password" class="text-danger"></span>
+
+                                    </div>
+
+                                    <div class="field">
+                                        <div class="input-group">
+                                            <div class="input-group-prepend">
+                                                <label class="input-group-text" for="confirmPassword">
+                                                    <i class="fas fa-lock" aria-hidden="true"></i>
+                                                </label>
+                                            </div>
+                                            <div class="prepend-divider"></div>
+                                            <input type="password" asp-for="confirmPassword" autocomplete="off" class="form-control" placeholder="اعادة كلمة المرور" value="">
+                                        </div>
+                                        <span asp-validation-for="confirmPassword" class="text-danger"></span>
+
+                                    </div>
+
+                                    <button type="submit" class="btn btn-standard next signUp" style="width:100%;">انشاء حساب</button>
+
+                                </div>
+
+                                <div class="col-md-4 mb-5 order-1 order-md-2 col-lg-4  imageSection">
+                                    <h3>الصوره الشخصية</h3>
+                                    <div class="inputUpload">
+                                        <label for="userImage" style="margin-bottom:0">
+                                            <img src="" id="imagePreview" />
+
+                                        </label>
+                                        <input class="form-control" type="file" asp-for="doctorPhotoUploaded" id="userImage" onchange="preview(this);">
+                                        <label for="userImage" class="image" style="cursor: pointer;">
+                                            <img src="~/images/img/upload.svg" id="imageAvatar">
+                                            <p class="p1">اسحب الصورة هنا</p>
+                                            <p class="p2">أو انقر لاختيار الصورة</p>
+                                        </label>
+                                    </div>
+                                    <span asp-validation-for="doctorPhotoUploaded" class="text-danger"></span>
+
+                                </div>
+
+
+                            </div>
+                        </form>
+
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+
+    </section>
+
+</main>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap-select@1.13.14/dist/js/bootstrap-select.min.js"></script>
+<script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+<script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
+
+
+<script>
+    $(document).ready(function () {
+        $(".spinner-container").hide();
+        $("#registerForm").submit(function (e) {
+            e.preventDefault();
+
+        });
+
+        $(".signUp").on("click", function (event) {
+            var validator = $("#registerForm").validate();
+            var flag = validator.form();
+            if (flag) {
+                Add();
+            }
+        });
+    })
+
+    function Add() {
+        $.ajax({
+            url: '/Doctors/Register',
+            type: 'POST',
+            data: new FormData($("#registerForm")[0]),
+            processData: false,
+            contentType: false,
+            beforeSend: function () {
+                $('#signUp').prop('disabled', true);
+                $(".spinner-container").show();
+
+            },
+            success: function (result) {
+
+                if (result == "success") {
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'تم الحفظ',
+                        showConfirmButton: false,
+                        timer: 1500
+                    })
+                    window.location.replace("/doctors/login");
+
+                }
+                else if (result == "exist") {
+                    Swal.fire({
+                        icon: 'info',
+                        title: 'يوجد حساب اخر بنفس البريد الالكتروني',
+                        showConfirmButton: false,
+                        timer: 1500
+                    })
+
+                }
+
+            },
+            error: function (e) {
+                alert(e.responseText);
+            },
+            complete: function () {
+
+                $('#signUp').prop('disabled', false);
+                $(".spinner-container").hide();
+
+            },
+        });
+    }
+
+
+    function preview() {
+        $('.image').hide();
+        $('#userImage').hide();
+        $('#imagePreview').addClass("imagePreview");
+        document.getElementById('imagePreview').src = window.URL.createObjectURL(event.target.files[0]);
+    }
+</script>

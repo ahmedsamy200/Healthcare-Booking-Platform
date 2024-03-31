@@ -1,0 +1,256 @@
+﻿body {
+}
+
+section {
+    margin-bottom: 80px;
+}
+
+.headSection {
+    height: 350px;
+    background: linear-gradient( 180deg,#00b8cd 0,#01b5b6 100%);
+    text-align: center
+}
+
+    .headSection .Content {
+        padding-top: 120px;
+    }
+
+        .headSection .Content h1 {
+            color: #ffff;
+            padding-bottom: 8px;
+        }
+
+        .headSection .Content h3 {
+            color: #ffff;
+        }
+
+.contactImage {
+    background-image: linear-gradient(rgb(27 196 203 / 22%), rgb(25 214 219 / 18%)), url(../images/img/contact4.jpg);
+    border-radius: 7px;
+    height: 515px;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+}
+
+.formContent {
+    background-color: #fff;
+    box-shadow: 0 20px 30px #00000009;
+    padding: 37px 26px;
+    border-radius: 8px;
+}
+
+.field {
+    margin-bottom: 15px
+}
+
+.input-group input, .input-group textarea {
+    color: #00b8cd;
+    background: #f1f8fb;
+    border: none;
+    font-weight: 600;
+    padding: 28px 16px;
+    border-radius: 5px !important;
+}
+
+.input-group-text {
+    color: #00b8cd;
+    background: 0 0;
+    border: none;
+    padding: 16px 32px 16px 16px;
+    font-size: 22px;
+}
+
+.form-control:focus {
+    background: #f1f8fb;
+    box-shadow: 0 0 0 0.2rem rgb(0 123 255 / 25%);
+}
+
+.contactInformation {
+    text-align: center
+}
+
+    .contactInformation h4 {
+        margin-top: 10px;
+        font-size: 30px;
+    }
+
+.highlight-line {
+    border-bottom: 4px solid #00b8cd;
+    width: 55px;
+    margin: 10px 28px;
+}
+
+.contactSplit {
+    display: flex;
+    justify-content: center;
+    align-items: center
+}
+
+    .contactSplit p {
+        color: #00b8cd;
+        margin: 10px 0;
+        font-size: 22px
+    }
+
+.contactCard {
+    background: #fff;
+    padding: 50px 18px;
+    margin-bottom: 30px;
+    max-width: 360px;
+    /*box-shadow: 0 20px 30px #00000009;*/
+    border-radius: 8px
+}
+
+
+
+    .contactCard h5 {
+        color: #5d5d5d;
+        margin-bottom: 28px;
+    }
+
+    .contactCard p {
+        font-weight: Bold;
+        text-align: center;
+        border-radius: 8px;
+        padding: 8px 19px;
+        overflow: hidden;
+    }
+
+
+.contactAddress, .contactPhone {
+    color: #00b8cd;
+    background-color: #f1f8fb;
+}
+
+.contactEmail {
+    color: #ad3020;
+    background-color: #f7eae8;
+}
+
+.contactFacebook {
+    color: #3b5998;
+    background-color: #ebeef5;
+    font-size: 15px;
+}
+
+a:hover {
+    text-decoration: none
+}
+.btn-standard {
+    background-color: #01b5b6;
+    border: #01b5b6 2px solid;
+    color: #fff;
+}
+    .btn-standard:hover {
+        background-color: #0a8d8d;
+        color: #fff;
+    }
+
+
+
+.image-group {
+    position: relative;
+    height: 100%;
+    width: 100%;
+    -webkit-box-flex: 1;
+    -ms-flex-grow: 1;
+    flex-grow: 1;
+    margin: 0 0 0 40px;
+}
+
+.image-group input {
+    cursor: pointer;
+    display: inline-block;
+    width: 100%;
+    padding: 100px 0 0 0;
+    height: 100px;
+    overflow: hidden;
+    border-radius: 20px;
+}
+
+.image-group .info-group {
+    position: absolute;
+    top: 33px;
+    right: 99px;
+    pointer-events: none;
+}
+
+ .image-group .info-group::before {
+    content: url(../images/img/upload.svg);
+    position: absolute;
+    top: 0;
+    right: -56px;
+}
+
+ .image-group .info-group p:first-child {
+    font: Bold 17px/22px Almarai;
+    color: #1d1f26;
+    margin: 0;
+}
+
+.image-group .info-group p:last-child {
+    font: Bold 12px/22px Almarai;
+    color: #939290;
+    margin: 0;
+}
+
+.preSvg {
+    width: 25px;
+    height: 25px;
+    margin-left: 5px;
+}
+
+.appointmentDetails {
+    font-weight: bold;
+    color: #5d5d5d;
+    font-size: 14px;
+    display: block;
+    max-width: 385px;
+    margin-bottom: 15px;
+}
+
+.infoCard{
+    background: #fff;
+    margin: 26px 0 26px 0;
+    box-shadow: 0 20px 30px #00000005;
+    border-radius: 10px;
+    padding: 30px;
+}
+
+.infoText {
+    color: #00b8cd;
+    /* margin: 14px 12px; */
+    font-weight: Bold;
+    line-height: 1.6;
+    margin-left: 45px;
+}
+
+.btn-light {
+    background-color: #f1f8fb;
+    color: #00b8cd;
+    padding: 4px 5px;
+}
+.bootstrap-select .dropdown-toggle .filter-option {
+    text-align: right !important;
+    margin-right: 15px;
+}
+
+.bootstrap-select:not([class*=col-]):not([class*=form-control]):not(.input-group-btn) {
+    width: 70% !important;
+}
+
+.bootstrap-select .dropdown-menu.inner {
+ text-align:center
+}
+
+.bootstrap-select .dropdown-toggle .filter-option-inner-inner {
+    font-weight: 500;
+}
+
+@media only screen and (max-width: 335px) {
+    .info button {
+        min-width: 100px !important;
+    }
+  
+}

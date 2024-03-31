@@ -1,0 +1,103 @@
+﻿@model OfferViewModel
+
+@{
+    ViewData["Title"] = "الرسائل";
+    Layout = "_AdminLayout";
+}
+
+<br />
+<br />
+
+<div class="container mb-5">
+    <h3 style="text-align: right; color: #333333c2;">الرسائل </h3>
+    <br />
+    <div class="container">
+
+        <table class="table table-hover table-striped mt-4" style="text-align: center; table-layout: fixed; width: 100%; word-break: break-word;">
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">الاسم</th>
+                    <th scope="col">الايميل </th>
+                    <th scope="col">رقم الهاتف</th>
+                    <th scope="col">الرساله </th>
+                    <th scope="col"> </th>
+
+                </tr>
+            </thead>
+            <tbody class="tbody">
+            </tbody>
+        </table>
+
+    </div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="~/lib/notiflix-aio-2.7.0.min.js"></script>
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
+
+<script>
+    $(document).ready(function () {
+        $("#massages").addClass("active");
+        GetAllMassages();
+
+    });
+
+
+    function GetAllMassages() {
+        $.ajax({
+            url: "/ContactUs/GetAllMassages",
+            type: "GET",
+            contentType: "application/json;charset=utf-8",
+            dataType: "json",
+            success: function (result) {
+                var html = '';
+                if (result.length == 0) {
+                    $('.noItems').show();
+
+                }
+                var counter = 1;
+                $.each(result, function (key, item) {
+                    html += '<tr>';
+                    html += '<th scope="row">' + counter + '</th>';
+                    html += '<td scope="row">' + item.firstName + ' ' + item.lastName + '</td>';
+                    html += '<td scope="row">' + item.email + '</td>';
+                    html += '<td scope="row">' + item.phone + '</td>';
+                    html += '<td scope="row">' + item.massage + '</td>';
+                    html += '<td>';
+                    html += '<a href="javascript:void(0);" onclick=Delete(' + item.id + '); return false;><i class="fas fa-times" style="font-size: 20px;color: red;"></i></a>';
+                    html += '</td>';
+                    html += '</tr>';
+
+                    counter++;
+
+                });
+                $('.tbody').html(html);
+
+            }
+        });
+    }
+
+    function Delete(id) {
+        if (confirm("تاكيد الحذف")) {
+            $.ajax({
+                type: "POST",
+                dataType: false,
+                url: "/Offers/DeleteOffer",
+                data: { id: id },
+                success: function (data, xhr, status) {
+                    Notiflix.Notify.Success('تم الحذف');
+                    GetAllOffers();
+                },
+                error: function (e) {
+                    alert(e.responseText);
+                    Notiflix.Notify.Failure('حدث خطا ما يرجي اعاده المحاوله');
+                }
+            });
+        }
+    }
+
+
+</script>

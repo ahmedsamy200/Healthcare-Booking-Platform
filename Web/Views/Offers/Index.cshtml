@@ -1,0 +1,72 @@
+﻿@model IEnumerable<OfferViewModel>
+@{
+    ViewData["Title"] = "اخر العروض";
+}
+
+<head>
+    <link rel="stylesheet" href="~/css/offers.css" asp-append-version="true" />
+
+</head>
+
+<section class="headSection">
+    <div class="container">
+        <div class="Content">
+            <h1> اخر العروض</h1>
+            <h3>افضل العروض الموجودة في مصر</h3>
+        </div>
+    </div>
+</section>
+
+<section>
+    <div class="container">
+        <div class="Content">
+            <div class="row">
+                @foreach (var item in Model)
+                {
+
+                    item.doctorImage = item.doctorImage ?? "default.jpg";
+
+                    <div class="col-lg-4 col-md-6 col-sm-12">
+
+                        <div class="offer">
+                            <a asp-controller="Offers" asp-action="Offer" asp-route-id="@item.Id">
+                                <img alt="img" class="offerImg" src="..//images/offers/@item.mainPhoto">
+                            </a>
+
+                            <div class="offerContent">
+                                <h3>@item.title</h3>
+                                <p>@item.subTitle</p>
+                            </div>
+
+                            <div class="offerFooter">
+                                <div class="rigth">
+                                    <img alt="img" class="docImg" src="../images/doctors/@item.doctorImage" />
+                                    <h6>د/@item.doctorName</h6>
+                                    <p>@item.city</p>
+                                </div>
+
+                                <div class="left mt-2">
+                                    <a asp-controller="Appointments" asp-action="BookOffer" asp-route-doctorID="@item.doctorID" class="btn-standard offerBtn" style="padding:5px 30px">احجز الان</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                }
+
+
+
+            </div>
+        </div>
+
+    </div>
+</section>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+<script>
+    $(document).ready(function () {
+        $("#offers").addClass("active");
+
+    });
+
+</script>

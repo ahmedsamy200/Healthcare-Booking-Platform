@@ -1,0 +1,260 @@
+﻿@model ContactUsViewModel
+@{
+    ViewData["Title"] = "اتصل بنا";
+}
+
+<head>
+    <link rel="stylesheet" href="~/css/contactUs.css" asp-append-version="true" />
+</head>
+
+
+<section class="headSection">
+    <div class="container">
+        <div class="Content">
+            <h1>اتصل بنا</h1>
+            <h3>يمكنك مراسلتنا في أي وقت لاي استفسار</h3>
+        </div>
+    </div>
+</section>
+
+<section class="contactSection">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6 col-md-12">
+                <div class="formContent">
+                    <h3>يمكنك مراسلتنا في أي وقت لاي استفسار</h3>
+                    <form id="contactUsForm">
+
+                        <div class="row" style="margin-top:30px">
+                            <div class="col-md-6">
+                                <div class="field">
+                                    <div class="input-group">
+                                        <input type="text" asp-for="firstName" required autocomplete="off" class="form-control" placeholder="الاسم الاول" value="">
+
+                                    </div>
+                                    <span asp-validation-for="firstName" class="text-danger"></span>
+
+                                </div>
+
+                            </div>
+
+                            <div class="col-md-6">
+                                <div class="field">
+                                    <div class="input-group">
+                                        <input type="text" asp-for="lastName" required autocomplete="off" class="form-control" placeholder="الاسم الثاني" value="">
+                                    </div>
+                                    <span asp-validation-for="lastName" class="text-danger"></span>
+
+                                </div>
+
+                            </div>
+
+                            <div class="col-md-12">
+                                <div class="field">
+                                    <div class="input-group">
+                                        <input type="tel" asp-for="phone" required autocomplete="off" class="form-control" placeholder=" رقم الهاتف" value="">
+                                    </div>
+                                    <span asp-validation-for="phone" class="text-danger"></span>
+
+                                </div>
+
+                            </div>
+
+                            <div class="col-md-12">
+                                <div class="field">
+                                    <div class="input-group">
+                                        <input type="email" asp-for="email" required autocomplete="off" class="form-control" placeholder=" البريد الالكتروني" value="">
+                                    </div>
+                                    <span asp-validation-for="email" class="text-danger"></span>
+
+                                </div>
+
+                            </div>
+
+                            <div class="col-md-12">
+                                <div class="field">
+                                    <div class="input-group">
+                                        <textarea asp-for="massage" required class="form-control" placeholder="  الرساله" cols="9"></textarea>
+                                    </div>
+                                    <span asp-validation-for="massage" class="text-danger"></span>
+
+                                </div>
+
+                            </div>
+
+                            <div class="col-md-6">
+                                <div class="button-group mt-3">
+                                    <button type="submit" id="add" class="btn btn-standard w-100 "  style="font-weight:700">ارسال</button>
+                                </div>
+                            </div>
+
+
+                        </div>
+                    </form>
+
+
+                </div>
+            </div>
+
+            <div class="col-lg-6 d-none d-lg-block">
+                <div class="contactImage">
+
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="contactInformation">
+    <div class="container">
+        <div class="contactSplit">
+            <div class="highlight-line"></div>
+            <p>تابعنا</p>
+            <div class="highlight-line"></div>
+        </div>
+        <h4>ابقي علي اتصال</h4>
+
+        <div class="row" style="margin-top:50px;text-align:-webkit-center">
+
+            <div class="col-lg-3 col-md-6">
+                <div class="contactCard">
+                    <h5>العنوان</h5>
+                    <p class="contactAddress">
+                        <i class="fal fa-map-marker-alt"></i>
+                        القاهره - مصر الجديده
+                    </p>
+                    <p class="contactAddress">
+                        <i class="fal fa-map-marker-alt"></i>
+                        القاهره - الحي الثاني
+                    </p>
+                </div>
+            </div>
+
+            <div class="col-lg-3 col-md-6">
+                <div class="contactCard">
+                    <h5>البريد الالكتروني</h5>
+                    <p class="contactEmail">
+                        <i class="fal fa-envelope"></i>
+                        info@test.com
+                    </p>
+                    <p class="contactEmail">
+                        <i class="fal fa-envelope"></i>
+                        info2@test.com
+                    </p>
+                </div>
+            </div>
+
+            <div class="col-lg-3 col-md-6">
+                <div class="contactCard">
+                    <h5>رقم الهاتف</h5>
+                    <p class="contactPhone">
+                        <i class="fas fa-phone" aria-hidden="true"></i>
+                        01029405663
+                    </p>
+                    <p class="contactPhone">
+                        <i class="fas fa-phone" aria-hidden="true"></i>
+                        01029405663
+                    </p>
+                </div>
+            </div>
+
+            <div class="col-lg-3 col-md-6">
+                <div class="contactCard">
+                    <h5>التواصل الاجتماعي</h5>
+                    <a href="#" target="_blank">
+                        <p class="contactFacebook">
+                            <i class="fab fa-facebook-f" aria-hidden="true"></i>
+                            تابع صفحتنا على الفيسبوك
+                        </p>
+                    </a>
+
+                    <a href="#" target="_blank">
+                        <p class="contactFacebook">
+                            <i class="fab fa-twitter"></i>
+                            تابع صفحتنا على تويتر
+                        </p>
+                    </a>
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
+
+
+
+<script>
+    $(document).ready(function () {
+        $("#contact").addClass("active");
+        $("#contactUsForm").submit(function (e) {
+            e.preventDefault();
+
+        });
+
+        $("#add").on("click", function (event) {
+            var validator = $("#contactUsForm").validate();
+            var flag = validator.form();
+            if (flag) {
+                Add();
+            }
+        });
+    });
+
+
+    function Add() {
+        $.ajax({
+            url: '/ContactUs/AddMassage',
+            type: 'POST',
+            data: new FormData($("#contactUsForm")[0]),
+            processData: false,
+            contentType: false,
+            beforeSend: function () {
+                $('#add').prop('disabled', true);
+
+            },
+            success: function (result) {
+                ResetForm();
+                if (result == "success") {
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'تم الارسال',
+                        showConfirmButton: false,
+                        timer: 1500
+                    })
+                }
+                else if (result == "error") {
+                    Notiflix.Notify.Failure('حدث خطا ما');
+                    alert(e.responseText);
+
+                }
+
+            },
+            error: function (e) {
+                Notiflix.Notify.Failure('حدث خطا ما يرجي اعاده المحاوله');
+                alert(e.responseText);
+            },
+            complete: function () {
+
+                $('#add').prop('disabled', false);
+
+            },
+        });
+    }
+
+    function ResetForm() {
+        $('#firstName').val('');
+        $('#lastName').val('');
+        $('#phone').val('');
+        $('#email').val('');
+        $('#massage').val('');
+
+    }
+
+</script>

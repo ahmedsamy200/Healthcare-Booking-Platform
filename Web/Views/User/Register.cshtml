@@ -1,0 +1,274 @@
+﻿@model UserViewModel
+@{
+    ViewData["Title"] = "انشاء حساب";
+    Layout = "";
+}
+
+@* User Register*@
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    <link rel="stylesheet" href="~/css/login.css" asp-append-version="true" />
+    <link href="https://kit-pro.fontawesome.com/releases/v5.15.4/css/pro.min.css" rel="stylesheet">
+</head>
+
+<style>
+    .page {
+        max-width: 650px;
+        margin: 0 auto;
+        text-align: center;
+        padding: 70px 10px;
+    }
+
+
+    .title {
+        text-align: center
+    }
+
+    .rigthSection {
+        background: linear-gradient( 180deg,#00b8cd 0,#01b5b6 100%);
+        z-index: 1000;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        padding: 20px 30px;
+        margin-top: 0;
+        width: 40%;
+        position: fixed;
+        height: 100vh;
+    }
+
+    .flag {
+        text-align: center;
+    }
+
+    .field {
+        text-align: right;
+        margin-bottom: 35px;
+    }
+
+    .input-group {
+        margin-bottom: 0px
+    }
+
+    .top {
+        margin-top: 0px !important;
+    }
+</style>
+
+<main dir="rtl">
+
+    <section class="registerSection userRegister">
+        <div class="row" style="margin-left:0 !important">
+
+            <div class="col-lg-5 " style="background: linear-gradient( 180deg,#00b8cd 0,#01b5b6 100%); z-index: 1000">
+
+
+                <div style="display: flex;justify-content: center;align-items: center;height: 100%;">
+                    <a asp-controller="Home" asp-action="Index">
+                        <img width="240" src="../images/logo/logo1.png" />
+
+                    </a>
+
+
+                </div>
+
+
+
+            </div>
+
+            <div class="col-lg-7" style="background:#fff">
+                <div class="container-fluid">
+
+                    <div class="page">
+
+                        <div class="title">
+                            <h3>إنشاء حساب جديد</h3>
+                            <p>سجل واحجز مع افضل الدكاترة في مصر والوطن العربي</p>
+                        </div>
+                        <form id="registerForm">
+                            <div class="field">
+                                <div class="input-group" id="userNameInput">
+                                    <div class="input-group-prepend">
+                                        <label class="input-group-text" for="name">
+                                            <i class="far fa-user" aria-hidden="true"></i>
+                                        </label>
+                                    </div>
+                                    <div class="prepend-divider"></div>
+                                    <input type="text" asp-for="name" autocomplete="off" class="form-control" placeholder="الاسم بالكامل">
+
+                                </div>
+                                <span asp-validation-for="name" class="text-danger"></span>
+
+                            </div>
+
+                            <div class="field">
+                                <div class="row">
+                                    <div class="col-9 userPhoneBox">
+                                        <div class="input-group" id="userPhoneInput">
+                                            <div class="input-group-prepend">
+                                                <label class="input-group-text" for="phone">
+                                                    <i class="fas fa-phone" aria-hidden="true"></i>
+                                                </label>
+                                            </div>
+                                            <div class="prepend-divider"></div>
+                                            <input type="tel" asp-for="phone" class="form-control" placeholder="رقم الهاتف" value="">
+
+                                        </div>
+                                        <span asp-validation-for="phone" class="text-danger"></span>
+
+                                    </div>
+                                    <div class="col-3">
+
+                                        <div class="flag">
+                                            <span>  20 +</span>
+                                            <img src="../images/img/egypt.png" />
+
+                                        </div>
+
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                            <div class="field">
+                                <div class="input-group" id="userEmailInput">
+                                    <div class="input-group-prepend">
+                                        <label class="input-group-text" for="email">
+                                            <i class="far fa-envelope" aria-hidden="true"></i>
+                                        </label>
+                                    </div>
+                                    <div class="prepend-divider"></div>
+                                    <input type="email" asp-for="email" required="" value="" class="form-control" placeholder="البريد الإلكتروني">
+                                </div>
+                                <span asp-validation-for="email" class="text-danger"></span>
+
+                            </div>
+
+                            <div class="field">
+                                <div class="input-group" id="userPasswordInput">
+                                    <div class="input-group-prepend">
+                                        <label class="input-group-text" for="password">
+                                            <i class="fas fa-lock" aria-hidden="true"></i>
+                                        </label>
+                                    </div>
+                                    <div class="prepend-divider"></div>
+                                    <input type="password" asp-for="password" autocomplete="off" class="form-control" placeholder="كلمة المرور" value="">
+                                </div>
+                                <span asp-validation-for="password" class="text-danger"></span>
+
+                            </div>
+
+                            <div class="field">
+                                <div class="input-group" id="confirmPasswordInput">
+                                    <div class="input-group-prepend">
+                                        <label class="input-group-text" for="confirmPassword">
+                                            <i class="fas fa-lock" aria-hidden="true"></i>
+                                        </label>
+                                    </div>
+                                    <div class="prepend-divider"></div>
+                                    <input type="password" asp-for="confirmPassword" autocomplete="off" class="form-control" placeholder="اعادة كلمة المرور" value="">
+                                </div>
+                                <span asp-validation-for="confirmPassword" class="text-danger"></span>
+
+                            </div>
+
+                            <button type="submit" class="btn btn-standard next signUp" style="width:100%;">انشاء حساب</button>
+
+
+                        </form>
+
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </section>
+
+</main>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns" crossorigin="anonymous"></script>
+<script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+<script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
+
+<script>
+    $(document).ready(function () {
+        $(".spinner-container").hide();
+        $("#registerForm").submit(function (e) {
+            e.preventDefault();
+
+        });
+        if ($(window).width() < 830 && $(window).width() > 412) {
+            $('.page').addClass("top");
+
+        }
+
+        $(".signUp").on("click", function (event) {
+            var validator = $("#registerForm").validate();
+            var flag = validator.form();
+            alert(flag);
+            if (flag) {
+                Add();
+            }
+        });
+    })
+
+    function Add() {
+        $.ajax({
+            url: '/User/Register',
+            type: 'POST',
+            data: new FormData($("#registerForm")[0]),
+            processData: false,
+            contentType: false,
+            beforeSend: function () {
+                $('#signUp').prop('disabled', true);
+                $(".spinner-container").show();
+
+            },
+            success: function (result) {
+
+                if (result == "success") {
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'تم الحفظ',
+                        showConfirmButton: false,
+                        timer: 1500
+                    })
+                    window.location.replace("/User/login");
+
+                }
+                else if (result == "exist") {
+                    Swal.fire({
+                        icon: 'info',
+                        title: 'يوجد حساب اخر بنفس البريد الالكتروني',
+                        showConfirmButton: false,
+                        timer: 1500
+                    })
+
+                }
+
+            },
+            error: function (e) {
+                alert(e.responseText);
+            },
+            complete: function () {
+
+                $('#signUp').prop('disabled', false);
+                $(".spinner-container").hide();
+
+            },
+        });
+    }
+
+</script>

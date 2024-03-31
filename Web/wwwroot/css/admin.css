@@ -1,0 +1,86 @@
+﻿body {
+}
+.table td {
+    font-weight: 600;
+}
+
+.table {
+    box-shadow: rgb(99 99 99 / 20%) 0px 2px 8px 0px;
+    text-align: center;
+/*    width: 90%;
+*/    background: #fff;
+}
+
+
+
+.btn-standard {
+    min-width: 140px;
+    background-color: #01b5b6;
+    border: 3px solid #01b5b6;
+    border-radius: 7px;
+    font: Bold 17px/27px Almarai;
+    color: #f1f8fb;
+}
+
+    .btn-standard:hover {
+        background-color: #0a8d8d;
+        color: #fff;
+    }
+
+
+.modal-header .close {
+     padding: 0; 
+     margin: 0; 
+}
+#btnAdd, #btnUpdate {
+    background-color: #01b5b6;
+    border: 3px solid #01b5b6;
+    font: Bold 16px/27px Almarai;
+    color: #f1f8fb;
+    width: 90px;
+    height: 40px;
+    padding: 0;
+}
+
+.modal {
+    top: 10%;
+}
+
+#btnAdd:hover, #btnUpdate:hover {
+    background-color: #0a8d8d;
+    color: #f1f8fb !important;
+}
+
+.pp {
+    margin-top: 10px;
+}
+
+#btnCancel {
+    font: Bold 16px/27px Almarai;
+}
+
+.modal-body div{
+    padding:10px;
+}
+
+.the-message {
+    font-weight: 500 !important;
+}
+
+.nmi {
+    font-size: 27px !important;
+    top: 5px !important;
+}
+
+#txtSearch {
+    padding: 16px 14px 20px 0px;
+    font-weight: 600;
+    width: 270px;
+}
+
+#email {
+    background-color: #fff;
+    border: 1px solid #ced4da;
+    width: auto;
+    color: #495057;
+}

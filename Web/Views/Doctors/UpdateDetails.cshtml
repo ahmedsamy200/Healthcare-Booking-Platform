@@ -1,0 +1,243 @@
+﻿@model DoctorViewModel
+@{
+    ViewData["Title"] = "تعديل الحساب ";
+    Layout = "_DoctorLayout";
+
+}
+
+<head>
+    <link rel="stylesheet" href="~/css/editAccount.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/contactUs.css" asp-append-version="true" />
+
+</head>
+
+<section class="doctorInfoSection mt-5">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 col-md-12">
+                <div class="Content">
+
+                    <form id="doctorInfoForm">
+                        <h3>  تفاصيل عن العيادة  </h3>
+
+                        <div class="row" style="margin-top:35px">
+                            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+                            <div class="col-md-12 field">
+                                <div class="input-group" id="userSpeceficationInput">
+                                    <div class="input-group-prepend">
+                                        <label class="input-group-text" for="cityID">
+                                            <span class="pin-icon"></span>
+                                        </label>
+                                    </div>
+                                    <div class="prepend-divider"></div>
+                                    <div class="dropdown bootstrap-select">
+                                        <select class="selectpicker" asp-for="cityID" required="" data-live-search="true" data-style="form-screen-picker" title="المحافظه" tabindex="-98">
+                                            <option value="" disabled="">اختار المحافظه</option>
+                                            @foreach (var item in ViewBag.cities)
+                                            {
+                                                <option value="@item.Id">@item.city</option>
+                                            }
+
+
+                                        </select>
+                                    </div>
+                                </div>
+                                <span asp-validation-for="cityID" class="text-danger"></span>
+
+                            </div>
+
+                            <div class="col-md-12 field">
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <label class="input-group-text" for="address">
+                                            <span class="pin-icon"></span>
+                                        </label>
+                                    </div>
+                                    <div class="prepend-divider"></div>
+                                    <input type="text" asp-for="address" value="@Model.address" autocomplete="off" class="form-control" placeholder=" عنوان العيادة  " required>
+                                </div>
+                                <span asp-validation-for="address" class="text-danger"></span>
+
+                            </div>
+
+
+                            <div class="col-md-12 field">
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <label class="input-group-text" for="price">
+                                            <span class="price-icon"></span>
+                                        </label>
+                                    </div>
+                                    <div class="prepend-divider"></div>
+                                    <input type="text" autocomplete="off" class="form-control" placeholder="سعر الكشف " asp-for="price" value="@Model.price">
+                                </div>
+                                <span asp-validation-for="price" class="text-danger"></span>
+
+                            </div>
+
+                            <div class="col-md-12 field">
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <label class="input-group-text" for="description" style="position:absolute;top:18px">
+                                            <i class="far fa-quote-right"></i>
+                                        </label>                                    </div>
+                                    <div class="prepend-divider" style="position:absolute;top:30px;right:70px"></div>
+                                    <textarea class="form-control" placeholder="معلومات عن الدكتور" asp-for="description" rows="4" cols="50" style="width:85%;margin-right: 75px;resize:none"></textarea>                                </div>
+                                <span asp-validation-for="description" class="text-danger"></span>
+
+                            </div>
+
+                            <div class="col-md-12 field">
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <label class="input-group-text" for="services">
+                                            <i class="fal fa-hand-holding-heart"></i>                                        </label>
+                                    </div>
+                                    <div class="prepend-divider"></div>
+                                    <input multiple type="text" asp-for="services" value="@Model.services" autocomplete="off" class="form-control" placeholder=" خدمات العيادة  " required>
+                                </div>
+                                <span asp-validation-for="services" class="text-danger"></span>
+
+                            </div>
+
+
+
+
+
+                            <div class="col-md-12 field">
+                                <p style=" font: 600 20px/0px Almarai; padding: 15px;">صور العياده  </p>
+                                <div class="field">
+                                    <div class="input-group image-group ">
+
+                                        <!-- Image Form Input -->
+                                        <input type="file" multiple accept="image/jpg, image/jpeg" class="form-control-file" asp-for="clinicPhotos">
+                                        <label class="info-group" for="OfferAvatar">
+                                            <p>اسحب الصورة هنا</p>
+                                            <p>أو انقر لاختيار الصورة</p>
+                                        </label>
+                                    </div>
+                                    <span asp-validation-for="clinicPhotos" class="text-danger"></span>
+
+                                    <div class="gallery d-flex" id="gallery"></div>
+                                </div>
+                            </div>
+
+
+                            <div class="col-md-12">
+                                <div class="button-group mb-5">
+                                    <button type="submit" id="add" class="btn btn-standard" style="font-weight:700;position:absolute;">
+                                        <div class="spinner-container">
+                                            <div class="db-spinner"></div>
+                                        </div>
+                                        حفظ
+
+                                    </button>
+                                </div>
+
+                            </div>
+
+
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
+
+<script>
+    $(document).ready(function () {
+        $("#account").addClass("active");
+        $(".spinner-container").hide();
+
+        $("#add").on("click", function (event) {
+            $('#clinicPhotos').rules('remove');
+            var validator = $("#doctorInfoForm").validate();
+            var flag = validator.form();
+            if (flag) {
+                Add();
+            }
+        });
+
+        $("#clinicPhotos").on("change", function () {
+            
+            $("#gallery").empty();
+            previewMultiple(event);
+
+
+        });
+
+
+        $("#services").selectize({
+            delimiter: ",",
+            persist: false,
+            create: function (input) {
+                return {
+                    value: input,
+                    text: input,
+                };
+            },
+        });
+
+    })
+
+    function Add() {
+
+        $.ajax({
+            url: '/Doctors/UpdateDetails',
+            type: 'POST',
+            data: new FormData($("#doctorInfoForm")[0]),
+            processData: false,
+            contentType: false,
+            beforeSend: function () {
+                $('#add').prop('disabled', true);
+                $(".spinner-container").show();
+
+            },
+            success: function (result) {
+                if (result == "success") {
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'تم الحفظ',
+                        showConfirmButton: false,
+                        timer: 1500
+                    })
+                }
+                else if (result == "error") {
+                    Notiflix.Notify.Failure('حدث خطا ما');
+                    alert(e.responseText);
+
+                }
+
+            },
+            error: function (e) {
+                Notiflix.Notify.Failure('حدث خطا ما يرجي اعاده المحاوله');
+                alert(e.responseText);
+            },
+            complete: function () {
+
+                $('#add').prop('disabled', false);
+                $(".spinner-container").hide();
+
+            },
+        });
+    }
+
+    function previewMultiple(event) {
+        var offerSGallery = document.getElementById("clinicPhotos");
+        var count = offerSGallery.files.length;
+        for (i = 0; i < count; i++) {
+            var urls = URL.createObjectURL(event.target.files[i]);
+            document.getElementById("gallery").innerHTML += '<img  class="photosPre" src="' + urls + '">';
+        }
+    }
+
+
+</script>

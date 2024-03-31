@@ -1,0 +1,17 @@
+F:\Projects\Healthcare-Booking-Platform\Repository\bin\Release\net6.0\Repository.deps.json
+F:\Projects\Healthcare-Booking-Platform\Repository\bin\Release\net6.0\Repository.runtimeconfig.json
+F:\Projects\Healthcare-Booking-Platform\Repository\bin\Release\net6.0\Repository.dll
+F:\Projects\Healthcare-Booking-Platform\Repository\bin\Release\net6.0\Repository.pdb
+F:\Projects\Healthcare-Booking-Platform\Repository\bin\Release\net6.0\Domain.dll
+F:\Projects\Healthcare-Booking-Platform\Repository\bin\Release\net6.0\Domain.pdb
+F:\Projects\Healthcare-Booking-Platform\Repository\obj\Release\net6.0\Repository.csproj.AssemblyReference.cache
+F:\Projects\Healthcare-Booking-Platform\Repository\obj\Release\net6.0\Repository.GeneratedMSBuildEditorConfig.editorconfig
+F:\Projects\Healthcare-Booking-Platform\Repository\obj\Release\net6.0\Repository.AssemblyInfoInputs.cache
+F:\Projects\Healthcare-Booking-Platform\Repository\obj\Release\net6.0\Repository.AssemblyInfo.cs
+F:\Projects\Healthcare-Booking-Platform\Repository\obj\Release\net6.0\Repository.csproj.CoreCompileInputs.cache
+F:\Projects\Healthcare-Booking-Platform\Repository\obj\Release\net6.0\Repository.csproj.CopyComplete
+F:\Projects\Healthcare-Booking-Platform\Repository\obj\Release\net6.0\Repository.dll
+F:\Projects\Healthcare-Booking-Platform\Repository\obj\Release\net6.0\refint\Repository.dll
+F:\Projects\Healthcare-Booking-Platform\Repository\obj\Release\net6.0\Repository.pdb
+F:\Projects\Healthcare-Booking-Platform\Repository\obj\Release\net6.0\Repository.genruntimeconfig.cache
+F:\Projects\Healthcare-Booking-Platform\Repository\obj\Release\net6.0\ref\Repository.dll

@@ -1,0 +1,94 @@
+﻿body {
+}
+
+
+
+
+.OffersDiv {
+    margin-bottom: 30px;
+}
+
+.offerCard {
+    background: #fff;
+    box-shadow: 0 20px 30px #00000005;
+    padding: 30px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.offerContent {
+    display: inline-block;
+    vertical-align: top;
+}
+
+.offerImage img {
+    width: 130px;
+    height: 145px;
+    border-radius: 7px;
+}
+
+.title {
+    display: flex;
+    justify-content: space-between;
+    width: 375px;
+    align-items: center;
+    word-break: break-word;
+}
+
+    .title p {
+        font-weight: bold;
+        font-size: 18px;
+        color: #00b8cd;
+        margin-bottom: 11px;
+    }
+
+.subTitle {
+    color: #acb1b8;
+    margin-bottom: 15px;
+    font-size: 13px;
+    font-weight: bold;
+    word-break: break-word;
+    width: 375px;
+}
+
+
+.offerCard .offerImage {
+    display: inline-block;
+    padding-left: 10px;
+    margin-bottom: 20px;
+}
+
+.offerContent .detials {
+    font-weight: bold;
+    color: #5d5d5d;
+    font-size: 14px;
+    display: block;
+    max-width: 385px;
+    margin-bottom: 15px;
+    word-break: break-word;
+}
+
+.offerContent .doctorPrice span {
+    color: #00b8cd;
+}
+
+.swal2-warning {
+    color: #01b5b6 !important;
+    border-color: #01b5b6 !important;
+}
+
+@media only screen and (max-width: 555px) {
+    .title {
+        width: 275px;
+        display:block !important;
+    }
+    .subTitle {
+        width: 275px;
+    }
+    .rigthSide {
+        text-align: center;
+    }
+    .offerCard {
+        padding: 30px 0 !important;
+    }
+}

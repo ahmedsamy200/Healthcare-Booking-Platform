@@ -1,0 +1,149 @@
+﻿body {
+}
+
+section {
+    margin-bottom: 60px
+}
+
+.mainImg img {
+    width: 100%;
+    height: 275px;
+}
+
+.otherImages .img {
+    margin-bottom: 15px;
+}
+
+    .otherImages .img img {
+        height: 130px;
+        width: 100%;
+    }
+
+.docotrInfo {
+    margin-top: 11px;
+}
+
+    .docotrInfo img {
+        width: 55px;
+        height: 55px;
+        border-radius: 50%;
+    }
+
+    .docotrInfo .doctorName {
+        font-size: 16px;
+        font-weight: bold;
+        margin-bottom: 1px;
+    }
+
+    .docotrInfo .doctorAddress {
+        font-size: 13px;
+        color: #00b8cd;
+        font-weight: 600;
+        margin-right: 11px
+    }
+
+.tblHead {
+    display: flex;
+    justify-content: center;
+}
+
+    .tblHead::before {
+        width: 40px;
+        height: 40px;
+        margin: 9px 0 0 9px;
+        content: url(../images/img/calender.svg);
+    }
+
+.tblTitleText h4 {
+    color: #00b8cd;
+    text-align: center;
+    font-weight: bold;
+    font-size: 16px;
+}
+
+.tblTitleText h5 {
+    color: #5d5d5d;
+    text-align: center;
+    font-weight: bold;
+    font-size: 13px;
+}
+
+.days {
+    display: flex;
+    margin-top: 25px;
+}
+
+.day {
+    background-color: #fdfdfd;
+    text-align: center;
+    margin: 10px;
+}
+
+    .day .columnTitle {
+        color: #00b8cd;
+        background-color: #f1f8fb;
+        border-radius: 4px;
+        margin: 0;
+        width: 100%;
+        padding: 8px;
+        font-size: 13px;
+    }
+
+    .day .columnTimes {
+        font-size: 14px
+    }
+
+.btnBook {
+    padding: 5px;
+    font-size: 13px;
+    font-weight: 500;
+    color: #f1f8fb !important;
+    background-color: #01b5b6 !important;
+    border-radius: 4px;
+    width: 100% !important;
+    display: inline-block;
+}
+
+.owl-item {
+    background: #fff;
+    border-top-right-radius: 25px;
+    border-top-left-radius: 25px;
+    box-shadow: none !important;
+}
+
+
+.owl-nav {
+    position: absolute;
+    top: 34%;
+    width: 100%;
+}
+
+.owl-next {
+    position: absolute;
+    left: -23px;
+}
+
+.owl-prev {
+    position: absolute;
+    right: -23px;
+}
+
+.owl-prev, .owl-next {
+    color: #00b8cd !important;
+    background-color: #f1f8fb !important;
+    border-radius: 50%;
+    padding: 34px !important;
+    height: 27px;
+    width: 27px;
+    transition: .3s all;
+}
+
+.ar {
+    font-size: 14px;
+    vertical-align: middle;
+}
+
+.owl-prev:hover, .owl-next:hover {
+    background-color: #0a8d8da3 !important;
+    color: #fff !important;
+}

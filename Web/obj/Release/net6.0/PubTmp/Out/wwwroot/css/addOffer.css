@@ -1,0 +1,95 @@
+﻿.db-spinner {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background-color: transparent;
+    border: 3px solid #1e1d1d1c;
+    border-top-color: #ffffff;
+    border-bottom-color: #ffffff;  
+    -webkit-animation: 1s spin linear infinite;
+    animation: 1s spin linear infinite;
+}
+
+.spinner-container {
+    display: inline-block;
+    margin-left: 15px;
+    position: absolute;
+    top: 9px;
+    right: 38%;
+}
+
+@keyframes spin {
+    from {
+        -webkit-transform: rotate(0deg);
+        transform: rotate(0deg);
+    }
+
+    to {
+        -webkit-transform: rotate(360deg);
+        transform: rotate(360deg);
+    }
+}
+
+.field {
+    margin-bottom: 25px;
+}
+
+.button-group .btn-standard:first-child {
+    float: right;
+    width: 40%;
+}
+
+.input-group {
+    margin-bottom: 7px
+}
+
+.button-group .btn-standard:last-child {
+    background-color: #f3f3f3;
+    border-color: #f3f3f3;
+    color: #363636;
+    float: left;
+    width: 40%;
+}
+
+    .button-group .btn-standard:last-child:hover {
+        background-color: #9b9b9b;
+        color: #f3f3f3;
+    }
+
+.offerImg {
+    height: 105px;
+    width: 125px;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+#offerImgPre {
+    height: 100%;
+    width: auto;
+}
+
+.offersPre {
+    vertical-align: middle;
+    border-style: none;
+    width: 125px;
+    height: 125px;
+    padding: 10px;
+}
+
+.swal2-styled {
+    background-color: #01b5b6 !important;
+    border: #01b5b6 2px solid !important;
+    color: #fff !important;
+    width: 115px !important;
+}
+
+.swal2-info {
+    color: #01b5b6 !important;
+    border-color: #01b5b6 !important;
+}
+
+@media only screen and (max-width: 450px) {
+    .mainOffer {
+        display: table !important;
+    }
+}

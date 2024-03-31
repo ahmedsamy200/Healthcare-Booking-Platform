@@ -1,0 +1,247 @@
+﻿@model IEnumerable<AppointmentsViewModel>
+@using System.Globalization;
+
+@{
+    ViewData["Title"] = "الحجوزات";
+    Layout = "_DoctorLayout";
+
+}
+<head>
+    <link rel="stylesheet" href="~/css/contactUs.css" asp-append-version="true" />
+</head>
+
+<br />
+<br />
+<div class="container">
+    <br />
+    <div class="container">
+        <div class="row" style="justify-content:space-between">
+            <div class=" col-6">
+                <h3 style="text-align: right; color: #333333c2;">الحجوزات </h3>
+            </div>
+            <div class=" col-xm-6 mt-3">
+                <input type="text" id="txtSearch" class="form-control" placeholder="ادخل اسم المريض" />
+            </div>
+        </div>
+
+        <div class="infoCard">
+            <div class="appointmentDetails d-flex">
+                <img src="~/images/img/calender.svg" class="preSvg">
+                <p style="font-size:18px">  مواعيدي</p>
+            </div>
+             <div class="tbody">
+
+             </div>
+
+
+        </div>
+
+        <input type="hidden" id="hdnSpeID" />
+    </div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="~/lib/notiflix-aio-2.7.0.min.js"></script>
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
+
+<script>
+    $(document).ready(function () {
+        $("#appointments").addClass("active");
+        GetAllAppointments();
+
+        $("#txtSearch").keyup(function () {
+            var name = $("#txtSearch").val();
+            if (name == "") {
+                GetAllAppointments();
+            } else {
+                $.ajax({
+                    url: "/Doctors/GetAppointmentsByName",
+                    data: { name: name },
+                    type: "GET",
+                    contentType: "application/json;charset=utf-8",
+                    dataType: "json",
+                    success: function (result) {
+                        var html = '';
+                        if (result.length == 0) {
+                            $('.noItems').show();
+
+                        }
+                        $.each(result, function (key, item) {
+                            var from = new Date(item.from);
+                            var to = new Date(item.to);
+                            html += '<div class="content mb-5" style="justify-content:center">';
+                            html += '<div class="info d-flex">';
+                            html += '<p class="infoText">اسم المريض</p>';
+                            html += '<p style="font-weight: bold;">' + item.name + '</p>';
+                            html += '</div>';
+                            html += '<div class="info d-flex">';
+                            html += '<p class="infoText"> الميعاد </p>';
+                            html += '<p style="font-weight: bold;">' + item.dayAr + '  <span id="selectedTime">' + from.toLocaleString('ar-US', { hour: 'numeric', minute: 'numeric', hour12: true }) + '</span></p>';
+                            html += '</div>';
+                            html += '<div class="info d-flex">';
+                            html += '<p class="infoText">رقم الهاتف </p>';
+                            html += '<p style="font-weight: bold;">' + item.userPhone + '</p>';
+                            html += '</div>';
+                            html += '<div class="info d-flex">';
+                            html += '<p class="infoText"> الحاله </p>';
+                            if (item.status) {
+                                html += '<p style="font-weight: bold;">تم الموافقة</p>';
+
+                            }
+                            else {
+                                html += '<p style="font-weight: bold;">قيد الانتظار</p>';
+
+                            }
+                            html += '</div>';
+                            html += '<div class="info d-flex">';
+                            html += '<button type="submit" id="confirm" onclick=MakeTrue(' + item.id + '); class="btn btn-standard ml-2" onclick="Delete(' + item.id + ')" style="font-weight:700;width:15%">تاكيد الحجز</button>';
+                            html += '<button type="submit" id="delete" class="btn btn-standard " onclick="Delete(' + item.id + ')" style="font-weight:700;width:15%">الغاء الحجز</button>';
+
+                            html += '</div>';
+                            html += '<hr class="mt-5" />';
+
+                            html += '</div>';
+
+                        });
+                        $('.tbody').html(html);
+
+                    }
+                });
+
+            }
+
+        });
+
+    });
+
+    function GetAllAppointments() {
+
+        $.ajax({
+            url: "/Doctors/GetAllAppointments",
+            type: "GET",
+            contentType: "application/json;charset=utf-8",
+            dataType: "json",
+            success: function (result) {
+                var html = '';
+                if (result.length == 0) {
+                    $('.noItems').show();
+
+                }
+                $.each(result, function (key, item) {
+                    var from = new Date(item.from);
+                    var to = new Date(item.to);
+                    html += '<div class="content mb-5" style="justify-content:center">';
+                    html += '<div class="info d-flex">';
+                    html += '<p class="infoText">اسم المريض</p>';
+                    html += '<p style="font-weight: bold;">' + item.name + '</p>';
+                    html += '</div>';
+                    html += '<div class="info d-flex">';
+                    html += '<p class="infoText"> الميعاد </p>';
+                    html += '<p style="font-weight: bold;">' + item.dayAr + '  <span id="selectedTime">' + from.toLocaleString('ar-US', { hour: 'numeric', minute: 'numeric', hour12: true }) + '</span></p>';
+                    html += '</div>';
+                    html += '<div class="info d-flex">';
+                    html += '<p class="infoText">رقم الهاتف </p>';
+                    html += '<p style="font-weight: bold;">' + item.userPhone + '</p>';
+                    html += '</div>';
+                    html += '<div class="info d-flex">';
+                    html += '<p class="infoText"> الحاله </p>';
+                    if (item.status)
+                    {
+                        html += '<p style="font-weight: bold;color: green;">تم الموافقة</p>';
+
+                    }
+                    else
+                    {
+                        html += '<p style="font-weight: bold;">قيد الانتظار</p>';
+
+                    }
+                    html += '</div>';
+                    html += '<div class="info d-flex">';
+                    html += '<button type="submit" id="confirm" onclick=MakeTrue(' + item.id +'); class="btn btn-standard ml-2" onclick="Delete(' + item.id + ')" style="font-weight:700;width:15%">تاكيد الحجز</button>';
+                    html += '<button type="submit" id="delete" class="btn btn-standard " onclick="Delete(' + item.id + ')" style="font-weight:700;width:15%">الغاء الحجز</button>';
+                    html += '</div>';
+                    html += '<hr class="mt-5" />';
+                    html += '</div>';
+                  
+                });
+                $('.tbody').html(html);
+
+            }
+        });
+    }
+
+    function MakeTrue(id) {
+        Edit(id, true);
+    }
+
+    function Edit(id, status) {
+        $.ajax({
+            type: "Post",
+            dataType: "json",
+            url: "/Doctors/UpdateStatus?id=" + id +
+            "&status=" + status,
+            success: function (result) {
+                debugger;
+                if (result == "success") {
+                    Notiflix.Notify.Success('تم التعديل');
+                    GetAllAppointments();
+                }
+                else if (result == "exist") {
+                    Notiflix.Notify.Failure('حدث خطا ما يرجي اعاده المحاوله');
+                    alert(e.responseText);
+                }
+
+            },
+            error: function (e) {
+                Notiflix.Notify.Failure('حدث خطا ما يرجي اعاده المحاوله');
+                alert(e.responseText);
+            }
+
+        })
+    }
+
+    function Delete(id) {
+
+        Swal.fire({
+            title: 'هل انت متاكد ؟',
+            text: "سوف يتم حذف الحجز نهائيا!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#01b5b6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'حذف !',
+            cancelButtonText: 'الغاء'
+        }).then((result) => {
+            if (result.isConfirmed) {
+
+                $.ajax({
+                    type: "POST",
+                    dataType: false,
+                    url: "/Appointments/DeleteAppointment",
+                    data: { id: id },
+                    success: function (result) {
+                        if (result == "success") {
+                            Swal.fire(
+                                'تم الحذف!',
+                                'تم الغاء الحجز.',
+                                'success'
+                            )
+                            GetAllAppointments();
+                        }
+                    },
+                    error: function (e) {
+                        alert(e.responseText);
+                        Notiflix.Notify.Failure('حدث خطا ما يرجي اعاده المحاوله');
+                    }
+                });
+
+
+            }
+        })
+
+
+    }
+
+</script>

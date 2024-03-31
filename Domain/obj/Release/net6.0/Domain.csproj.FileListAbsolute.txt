@@ -1,0 +1,12 @@
+F:\Projects\Healthcare-Booking-Platform\Domain\bin\Release\net6.0\Domain.deps.json
+F:\Projects\Healthcare-Booking-Platform\Domain\bin\Release\net6.0\Domain.dll
+F:\Projects\Healthcare-Booking-Platform\Domain\bin\Release\net6.0\Domain.pdb
+F:\Projects\Healthcare-Booking-Platform\Domain\obj\Release\net6.0\Domain.csproj.AssemblyReference.cache
+F:\Projects\Healthcare-Booking-Platform\Domain\obj\Release\net6.0\Domain.GeneratedMSBuildEditorConfig.editorconfig
+F:\Projects\Healthcare-Booking-Platform\Domain\obj\Release\net6.0\Domain.AssemblyInfoInputs.cache
+F:\Projects\Healthcare-Booking-Platform\Domain\obj\Release\net6.0\Domain.AssemblyInfo.cs
+F:\Projects\Healthcare-Booking-Platform\Domain\obj\Release\net6.0\Domain.csproj.CoreCompileInputs.cache
+F:\Projects\Healthcare-Booking-Platform\Domain\obj\Release\net6.0\Domain.dll
+F:\Projects\Healthcare-Booking-Platform\Domain\obj\Release\net6.0\refint\Domain.dll
+F:\Projects\Healthcare-Booking-Platform\Domain\obj\Release\net6.0\Domain.pdb
+F:\Projects\Healthcare-Booking-Platform\Domain\obj\Release\net6.0\ref\Domain.dll

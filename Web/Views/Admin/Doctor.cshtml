@@ -1,0 +1,428 @@
+﻿@model DoctorViewModel
+
+@{
+    ViewData["Title"] = "Home Page";
+    Layout = "_AdminLayout";
+}
+
+<br />
+<br />
+<div class="container">
+    <h3 style="text-align: right; color: #333333c2;">الاطباء </h3>
+    <br />
+    <div class="container">
+        <div class="row" style="justify-content:space-between">
+            <div class=" col-xm-6">
+                <a class="btn login openModal" href="#" data-toggle="modal" data-target="#myModal"> اضافه طبيب</a>
+            </div>
+            <div class=" col-xm-6">
+                <input type="text" id="txtSearch" class="form-control" placeholder="ادخل اسم الطبيب" />
+            </div>
+        </div>
+
+        <table class="table table-hover table-striped mt-4" style="text-align: center; table-layout: fixed; width: 100%; word-break: break-word;">
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">الاسم</th>
+                    <th scope="col">التخصص</th>
+                    <th scope="col">العنوان</th>
+                    <th scope="col">الاميل</th>
+                    <th scope="col">رقم الهاتف</th>
+                    <th scope="col"> </th>
+
+                </tr>
+            </thead>
+            <tbody class="tbody">
+            </tbody>
+        </table>
+
+        <!-- Modal -->
+        <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">اضافه طبيب</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <form id="DoctorForm">
+                        <div class="modal-body">
+                            <div class="row">
+                                <div class="col-6">
+                                    <span style="font-weight: 600; color: #333333eb;">اسم الطبيب</span>
+                                    <input asp-for="name" type="text" class="form-control pp" />
+                                    <span asp-validation-for="name" class="text-danger"></span>
+                                    <input id="hdnId" name="Id" value="0" type="hidden" />
+
+                                </div>
+                                <div class="col-6">
+                                    <span style="font-weight: 600; color: #333333eb;"> التخصص</span>
+                                    <select asp-for="specializationID" class="form-control pp speSelect">
+                                        <option selected disabled value="-1"> اختر التخصص</option>
+                                    </select>
+                                    <span asp-validation-for="specializationID" class="text-danger"></span>
+
+                                </div>
+                                <div class="col-6">
+                                    <span style="font-weight: 600; color: #333333eb;">المحافظه </span>
+                                    <select asp-for="cityID" class="form-control pp citySelect">
+                                        <option selected disabled value="-1"> اختر المحافظه</option>
+                                    </select>
+                                    <span asp-validation-for="cityID" class="text-danger"></span>
+
+                                </div>
+                                <div class="col-6">
+                                    <span style="font-weight: 600; color: #333333eb;"> النوع</span>
+                                    <select asp-for="gender" class="form-control gender pp">
+                                        <option selected disabled value="-1"> اختر النوع</option>
+                                        <option value="male"> دكتور </option>
+                                        <option value="female">دكتورة</option>
+                                    </select>
+                                    <span asp-validation-for="gender" class="text-danger"></span>
+
+                                </div>
+                                <div class="col-6">
+                                    <span style="font-weight: 600; color: #333333eb;"> رقم الهاتف</span>
+                                    <input asp-for="phone" type="text" class="form-control pp" />
+                                    <span asp-validation-for="phone" class="text-danger"></span>
+
+                                </div>
+                                <div class="col-6">
+                                    <span style="font-weight: 600; color: #333333eb;">الاميل </span>
+                                    <input asp-for="email" type="text" class="form-control pp w-100" />
+                                    <span asp-validation-for="email" class="text-danger"></span>
+
+                                </div>
+                                <div class="col-6 password">
+                                    <span style="font-weight: 600; color: #333333eb;">كلمة المرور </span>
+                                    <input asp-for="password" type="password" class="form-control pp w-100" />
+                                    <span asp-validation-for="password" class="text-danger"></span>
+
+                                </div>
+                                <div class="col-6">
+                                    <input asp-for="subDescription" type="hidden" />
+                                    <input asp-for="views" value="456" type="hidden" />
+                                    <input asp-for="price" value="0" type="hidden" />
+
+                                </div>
+
+
+                            </div>
+
+                        </div>
+
+                        <div class="modal-footer">
+                            <button type="submit" id="btnAdd" class="btn btn-success Optionsbtn">حفظ</button>
+                            <button type="submit" id="btnUpdate" class="btn btn-success Optionsbtn">تعديل</button>
+                            <button type="submit" id="btnCancel" class="btn btn-danger Optionsbtn" data-dismiss="modal" onclick="ResetForm()">الغاء</button>
+                        </div>
+
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="~/lib/notiflix-aio-2.7.0.min.js"></script>
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
+
+<script>
+    $(document).ready(function () {
+        $("#doctors").addClass("active");
+        $("#btnUpdate").hide();
+        GetAllDoctors();
+
+        $("#btnAdd").on("click", function (event) {
+            var validator = $("#DoctorForm").validate();
+            var flag = validator.form();
+            if (flag) {
+                Add();
+
+            }
+
+        });
+        $("#btnUpdate").on("click", function (event) {
+            var validator = $("#DoctorForm").validate();
+            var flag = validator.form();
+            if (flag) {
+                Update();
+
+            }
+
+        });
+
+        $('.openModal').click(function () {
+            $('.password').show();
+            ResetForm();
+            $('#btnAdd').show();
+            $('#btnUpdate').hide();
+        });
+
+        $("#DoctorForm").submit(function (e) {
+
+            e.preventDefault();
+        });
+
+        $("#txtSearch").keyup(function () {
+            var name = $("#txtSearch").val();
+            if (name == "") {
+                GetAllDoctors();
+            } else {
+                $.ajax({
+                    url: "/Doctors/GetDoctorByName",
+                    data: { name: name },
+                    type: "GET",
+                    contentType: "application/json;charset=utf-8",
+                    dataType: "json",
+                    success: function (result) {
+                        var html = '';
+                        if (result.length == 0) {
+                            $('.noItems').show();
+
+                        }
+                        var counter = 1;
+                        $.each(result, function (key, item) {
+                            html += '<tr>';
+                            html += '<th scope="row">' + counter + '</th>';
+                            html += '<td scope="row">' + item.name + '</td>';
+                            html += '<td scope="row">' + item.specializationName + '</td>';
+                            html += '<td scope="row">' + item.city + '</td>';
+                            html += '<td scope="row">' + item.email + '</td>';
+                            html += '<td scope="row">' + item.phone + '</td>';
+
+                            html += '<td>';
+                            html += '<a href="javascript:void(0);" onclick=Edit(' + item.id + '); return false; data-toggle="modal" data-target="#myModal"><i class="fas fa-pen ml-4" style="font-size: 20px; color: #0b8283;"></i></a>';
+                            html += '<a href="javascript:void(0);" onclick=Delete(' + item.id + '); return false;><i class="fas fa-times" style="font-size: 20px;color: red;"></i></a>';
+                            html += '</td>';
+                            html += '</tr>';
+
+                            counter++;
+
+                        });
+                        $('.tbody').html(html);
+
+                    }
+                });
+
+            }
+
+        });
+        GetAllSpecializations();
+        GetAllCities();
+    });
+
+
+    function GetAllDoctors() {
+        $.ajax({
+            url: "/Doctors/GetAllDoctors",
+            type: "GET",
+            contentType: "application/json;charset=utf-8",
+            dataType: "json",
+            success: function (result) {
+                var html = '';
+                if (result.length == 0) {
+                    $('.noItems').show();
+
+                }
+                var counter = 1;
+                $.each(result, function (key, item) {
+                    html += '<tr>';
+                    html += '<th scope="row">' + counter + '</th>';
+                    html += '<td scope="row">' + item.name + '</td>';
+                    html += '<td scope="row">' + item.specializationName + '</td>';
+                    html += '<td scope="row">' + item.city + '</td>';
+                    html += '<td scope="row">' + item.email + '</td>';
+                    html += '<td scope="row">' + item.phone + '</td>';
+
+                    html += '<td>';
+                    html += '<a href="javascript:void(0);" onclick=Edit(' + item.id + '); return false; data-toggle="modal" data-target="#myModal"><i class="fas fa-pen ml-4" style="font-size: 20px; color: #0b8283;"></i></a>';
+                    html += '<a href="javascript:void(0);" onclick=Delete(' + item.id + '); return false;><i class="fas fa-times" style="font-size: 20px;color: red;"></i></a>';
+                    html += '</td>';
+                    html += '</tr>';
+
+                    counter++;
+
+                });
+                $('.tbody').html(html);
+
+            }
+        });
+    }
+
+    function GetAllSpecializations() {
+
+        $.ajax({
+            url: "/Admin/GetAllSpecializations",
+            type: "GET",
+            contentType: "application/json;charset=utf-8",
+            dataType: "json",
+            success: function (result) {
+                var html = '';
+                if (result.length == 0) {
+                    $('.noItems').show();
+
+                }
+                var counter = 1;
+                $.each(result, function (key, item) {
+                    html += '<option value="' + item.id + '">' + item.name + '</option>';
+               
+                  
+
+                });
+                $('.speSelect').append(html);
+
+            }
+        });
+    }
+
+    function GetAllCities() {
+
+        $.ajax({
+            url: "/Admin/GetAllCities",
+            type: "GET",
+            contentType: "application/json;charset=utf-8",
+            dataType: "json",
+            success: function (result) {
+                var html = '';
+                if (result.length == 0) {
+                    $('.noItems').show();
+
+                }
+                var counter = 1;
+                $.each(result, function (key, item) {
+                    html += '<option value="' + item.id + '">' + item.city + '</option>';
+
+
+
+                });
+                $('.citySelect').append(html);
+
+            }
+        });
+    }
+
+    function Add() {
+        $('#btnAdd').show();
+        $('#btnUpdate').hide();
+        $.ajax({
+            url: '/Doctors/AddDoctor',
+            type: 'POST',
+            dataType: "json",
+            data: new FormData($("#DoctorForm")[0]),
+            contentType: false,
+            processData: false,
+            success: function (result) {
+                if (result == "success") {
+                    $("#myModal").modal("hide");
+                    Notiflix.Notify.Success('تم الاضافه');
+                    GetAllDoctors();
+                    ResetForm();
+                }
+                else if (result == "exist") {
+                    Notiflix.Notify.Failure('يوجد طبيب اخر بنفس الايميل');
+                    alert(e.responseText);
+
+                }
+
+            },
+            error: function (e) {
+                Notiflix.Notify.Failure('حدث خطا ما يرجي اعاده المحاوله');
+                alert(e.responseText);
+            }
+        });
+    }
+
+    function Edit(id) {
+        $('.password').hide();
+        $('#btnAdd').hide();
+        $('#btnUpdate').show();
+        $('#hdnId').val(id);
+
+        $.ajax({
+            type: "GET",
+            dataType: "json",
+            url: "/Doctors/GetDoctorByID?id=" + id,
+            success: function (result) {
+                $.each(result, function (key, item) {
+                    $('#name').val(result.name);
+                    $('#specializationID').val(result.specializationID);
+                    $('#cityID').val(result.cityID);
+                    $('#gender').val(result.gender);
+                    $('#email').val(result.email);
+                    $('#phone').val(result.phone);
+                    $('#subDescription').val(result.subDescription);
+                    $('#password').val(result.password);
+
+                    $('#hdnSpeID').val(result.Id);
+                })
+            }
+
+        })
+    }
+
+
+    function Update() {
+        $.ajax({
+            url: "/Doctors/UpdateDoctor",
+            type: 'POST',
+            dataType: "json",
+            data: new FormData($("#DoctorForm")[0]),
+            contentType: false,
+            processData: false,
+            success: function (result) {
+                if (result == "success") {
+                    $("#myModal").modal("hide");
+                    Notiflix.Notify.Success('تم التعديل');
+                    GetAllDoctors();
+                    ResetForm();
+                }
+                else if (result == "exist") {
+                    Notiflix.Notify.Failure('يوجد طبيب اخر بنفس الاسم');
+                    alert(e.responseText);
+                }
+
+            },
+            error: function (e) {
+                Notiflix.Notify.Failure('حدث خطا ما يرجي اعاده المحاوله');
+                alert(e.responseText);
+            }
+
+        });
+
+    }
+
+
+    function Delete(id) {
+        if (confirm("تاكيد الحذف")) {
+            $.ajax({
+                type: "POST",
+                dataType: false,
+                url: "/Doctors/DeleteDoctor",
+                data: { id: id },
+                success: function (data, xhr, status) {
+                    Notiflix.Notify.Success('تم الحذف');
+                    GetAllDoctors();
+                },
+                error: function (e) {
+                    alert(e.responseText);
+                    Notiflix.Notify.Failure('حدث خطا ما يرجي اعاده المحاوله');
+                }
+            });
+        }
+    }
+
+
+    function ResetForm() {
+        $('.pp').val('');
+        $('.speSelect ').val(-1); 
+        $('.citySelect ').val(-1);
+        $('.gender ').val(-1);
+    }
+
+</script>

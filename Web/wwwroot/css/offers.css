@@ -1,0 +1,128 @@
+﻿body {
+}
+
+section {
+    margin-bottom: 80px;
+}
+
+.headSection {
+    height: 350px;
+    background: linear-gradient( 180deg,#00b8cd 0,#01b5b6 100%);
+    text-align: center
+}
+
+    .headSection .Content {
+        padding-top: 120px;
+    }
+
+        .headSection .Content h1 {
+            color: #ffff;
+            padding-bottom: 8px;
+        }
+
+        .headSection .Content h3 {
+            color: #ffff;
+        }
+
+.offer {
+    margin-bottom: 80px;
+    box-shadow: 0 20px 30px #00000005;
+}
+
+.offer {
+    background: #fff
+}
+
+.offersCarousel {
+    margin-top: 100px
+}
+
+
+.offerContent {
+    padding: 20px;
+    padding-bottom: 13px;
+}
+
+    .offerContent h3 {
+        color: #00b8cd;
+        font-size: 22px;
+        font-weight: 700;
+        margin-bottom: 13px;
+    }
+
+    .offerContent p {
+        font-size: 14px;
+        color: #848383;
+        font-weight: 500;
+    }
+
+img.offerImg {
+    height: 280px;
+    border-top-right-radius: 25px;
+    border-top-left-radius: 25px;
+    cursor: pointer;
+    width: 100%;
+}
+
+.offerFooter {
+    padding: 0 20px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.rigth {
+    float: right;
+    width: 50%;
+}
+
+    .rigth h6 {
+        color: #333333e3;
+        font-weight: 700;
+    }
+
+    .rigth p {
+        font-size: 13px;
+        color: #00b8cd;
+        font-weight: 500;
+    }
+
+.docImg {
+    width: 40px !important;
+    height: 40px;
+    border-radius: 50%;
+    margin-left: 6%;
+    float: right;
+}
+
+.left {
+    float: left;
+}
+
+
+.offerBtn {
+    width: 120px;
+    margin-top: 5px;
+    font-weight: 500;
+    height: 35px;
+    background-color: #f1f8fb;
+    color: #00b8cd;
+    border: none;
+    border-radius: 8px;
+    transition: .3s all;
+}
+
+.offerBtn:hover {
+    background-color: #0a8d8da3;
+}
+.btn-standard {
+    background-color: #01b5b6;
+    border: #01b5b6 2px solid;
+    color: #fff;
+    text-decoration:none
+}
+
+    .btn-standard:hover {
+        background-color: #0a8d8d;
+        color: #fff;
+        text-decoration: none
+    }

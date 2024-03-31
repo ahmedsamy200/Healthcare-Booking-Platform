@@ -1,0 +1,249 @@
+﻿.db-spinner {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background-color: transparent;
+    border: 3px solid #1e1d1d1c;
+    border-top-color: #ffffff;
+    border-bottom-color: #ffffff;
+    -webkit-animation: 1s spin linear infinite;
+    animation: 1s spin linear infinite;
+}
+
+.spinner-container {
+    display: inline-block;
+    margin-left: 15px;
+    position: absolute;
+    top: 9px;
+    right: 15%;
+}
+
+@keyframes spin {
+    from {
+        -webkit-transform: rotate(0deg);
+        transform: rotate(0deg);
+    }
+
+    to {
+        -webkit-transform: rotate(360deg);
+        transform: rotate(360deg);
+    }
+}
+
+.Content {
+    background-color: #fff;
+    box-shadow: 0 20px 30px #00000009;
+    padding: 37px 26px;
+    border-radius: 8px;
+    max-width: 1000px;
+    margin: 0 auto;
+    overflow: hidden;
+}
+
+.field {
+    margin-bottom: 15px !important;
+    width: 100%;
+}
+
+.doctorImg {
+    height: 105px;
+    width: 125px;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+
+#doctorImgPre {
+    height: 105px;
+    width: 125px;
+}
+
+.input-group {
+    background: #f1f8fb;
+    border: none;
+    border-radius: 5px !important;
+    margin-bottom: 10px;
+}
+
+.text-danger{
+    margin-right:10px
+}
+
+.prepend-divider {
+    border-left: 3px solid #00b8CD33;
+    height: 24px;
+    margin: auto 1px auto 1px;
+}
+
+.flag {
+    padding: 13px 7px;
+    margin-top: 4px;
+    background: #f1f8fb;
+    width: 110px;
+}
+
+.flag span {
+    font-weight: 600;
+    margin-right: 7px;
+}
+
+.flag img {
+    width: 31px;
+    margin-right: 10px;
+    height: 22px;
+}
+
+.radio-group {
+    margin: 0px 0px 10px;
+    padding: 0 16px;
+    display: flex;
+}
+
+.radio-group p {
+    font-weight: 600;
+    color: #00b8cd;
+    font-size: 19px;
+    margin: auto -15px auto 10px;
+    padding: 4px 10px 4px 10px;
+}
+
+.radio-group label {
+    font-weight: 600;
+    color: #263843;
+    margin: 9px 10px auto 40px;
+}
+
+input[type=radio] {
+    cursor: pointer;
+    visibility: hidden;
+    position: relative;
+    margin-right: 10px;
+}
+
+input[type=radio]:checked:before {
+    content: url(../images/img/radio-checked.svg);
+}
+
+input[type=radio]::before {
+    content: url(../images/img/radio-unchecked.svg);
+    visibility: visible;
+    position: absolute;
+    top: -3px;
+    left: 0;
+}
+
+.speciality-icon {
+    content: url(../images/img/clinic.svg);
+    display: inline-block;
+    height: 24px;
+}
+
+
+
+
+.dropdown-toggle {
+    color: #00b8cd;
+    padding: 13px 12px;
+    text-align-last: right;
+    font-weight: 600;
+}
+
+.filter-option-inner-inner {
+    font-weight: 600;
+}
+
+.bootstrap-select > .dropdown-toggle:after {
+    font-size: 25px;
+    margin-top: 5px;
+}
+
+.bootstrap-select.dropdown {
+    width: 92% !important
+}
+
+.bootstrap-select.dropdown:nth-child(1) {
+    width:100% !important
+}
+
+.dropdown-menu {
+    text-align: right
+}
+
+.input-group-text {
+    color: #00b8cd;
+    background: 0 0;
+    border: none;
+    padding: 16px 32px 16px 16px;
+    font-size: 22px;
+}
+
+.selectize-control .selectize-input {
+    border: none;
+    background: transparent;
+    margin-top: 10px;
+}
+
+.selectize-input.focus {
+    box-shadow: none !important
+}
+
+.selectize-control.multi .selectize-input > div {
+    padding: 2px 6px !important;
+    background: #006b7485 !important;
+    color: #FFFF !important;
+}
+
+
+.price-icon {
+    content: url(../images/img/price.svg);
+    display: inline-block;
+    height: 24px;
+}
+
+.pin-icon {
+    content: url(../images/img/address.svg);
+    display: inline-block;
+    height: 24px;
+}
+
+img.photosPre {
+    width: 125px;
+    height: 125px;
+    padding: 10px;
+}
+
+#gallery {
+    flex-wrap: wrap;
+
+}
+
+::placeholder {
+    color: #343a40cf;
+}
+.bootstrap-select > .dropdown-toggle{
+    width:160% !important
+}
+
+@media only screen and (max-width: 440px) {
+    .field {
+        display: table !important;
+    }
+    .img-preview{
+        margin-top:10px;
+    }
+    .flag{
+        display:none
+    }
+
+    .phoneBox {
+        flex: 100%;
+        max-width: 100%;
+    }
+    .speciality-icon {
+        height: 23px;
+    }
+    .bootstrap-select > .dropdown-toggle {
+        width: 150% !important
+    }
+}
+

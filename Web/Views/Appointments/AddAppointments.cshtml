@@ -1,0 +1,372 @@
+﻿@model IEnumerable<AppointmentsViewModel>
+@{
+    ViewData["Title"] = "اضافه مواعبد";
+    Layout = "_DoctorLayout";
+
+}
+
+<head>
+    <link rel="stylesheet" href="~/css/addAppointments.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/contactUs.css" asp-append-version="true" />
+
+</head>
+
+
+<section class="appointmentsSection mt-5">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 col-md-12">
+                <form id="appointmentsForm">
+                    <div class="Content">
+                        <h3> اضافه مواعيد</h3>
+
+                        <div class="input-group duration mt-5" style="padding: 0 15px">
+                            <label for="duration" class="mb-2">مدة الكشف بالدقيقة</label>
+                            <input type="number" id="duration" value="30" class="form-control" placeholder="مدة كشف الدكتور على المريض بالدقائق" min="10">
+                        </div>
+
+
+                        <div class="radio-group mt-5 d-block d-sm-flex " style="padding: 0 15px;">
+                            <label style=" margin-left: 75px;padding-bottom:30px">اختار الايام المتاحة</label>
+                            <div class="radio-selectors">
+
+                                <div class="radio-selectors">
+                                    <label for="saturday">
+                                        <input onchange="show_hide_time(this);" id="saturday" type="checkbox" value="saturday" data-order="1">
+                                        <input class="day" type="hidden" value="saturday">
+                                        <span>السبت</span>
+                                    </label>
+                                    <div class="row mb-4 d-none dayTimes" id="saturday_time">
+                                        <div class="col-6 col-lg-4">
+                                            <label for="start_time">من</label>
+                                            <input type="time" id="start_time">
+                                        </div>
+                                        <div class="col-6 col-lg-4">
+                                            <label for="end_time">الي</label>
+                                            <input type="time" id="end_time">
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                                <div class="radio-selectors">
+                                    <label for="sunday">
+                                        <input onchange="show_hide_time(this);" id="sunday" type="checkbox" value="sunday" data-order="2">
+                                        <input class="day" type="hidden" value="sunday">
+                                        <span>الأحد</span>
+                                    </label>
+                                    <div class="row mb-3 d-none dayTimes" id="sunday_time">
+                                        <div class="col-6 col-lg-4">
+                                            <label for="start_time">من</label>
+                                            <input type="time" id="start_time">
+                                        </div>
+                                        <div class="col-6 col-lg-4">
+                                            <label for="end_time">الي</label>
+                                            <input type="time" id="end_time">
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                                <div class="radio-selectors">
+                                    <label for="monday">
+                                        <input onchange="show_hide_time(this);" id="monday" type="checkbox" value="monday" data-order="3">
+                                        <input class="day" type="hidden" value="monday">
+                                        <span>الاثنين</span>
+
+                                    </label>
+                                    <div class="row mb-3 d-none dayTimes" id="monday_time">
+                                        <div class="col-6 col-lg-4">
+                                            <label for="start_time">من</label>
+                                            <input type="time" id="start_time" value="">
+                                        </div>
+                                        <div class="col-6 col-lg-4">
+                                            <label for="end_time">الي</label>
+                                            <input type="time" id="end_time" value="">
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                                <div class="radio-selectors">
+                                    <label for="tuesday">
+                                        <input onchange="show_hide_time(this);" id="tuesday" type="checkbox" value="tuesday" data-order="4">
+                                        <input class="day" type="hidden" value="tuesday">
+                                        <span>الثلاثاء</span>
+                                    </label>
+                                    <div class="row mb-3 d-none dayTimes" id="tuesday_time">
+                                        <div class="col-6 col-lg-4">
+                                            <label for="start_time">من</label>
+                                            <input type="time" id="start_time" value="">
+                                        </div>
+                                        <div class="col-6 col-lg-4">
+                                            <label for="end_time">الي</label>
+                                            <input type="time" id="end_time" value="">
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                                <div class="radio-selectors">
+                                    <label for="wednesday">
+                                        <input onchange="show_hide_time(this);" id="wednesday" type="checkbox" value="wednesday" data-order="5">
+                                        <input class="day" type="hidden" value="wednesday">
+                                        <span>الأربعاء</span>
+                                    </label>
+                                    <div class="row mb-3 d-none dayTimes" id="wednesday_time">
+                                        <div class="col-6 col-lg-4">
+                                            <label for="start_time">من</label>
+                                            <input type="time" id="start_time" value="">
+                                        </div>
+                                        <div class="col-6 col-lg-4">
+                                            <label for="end_time">الي</label>
+                                            <input type="time" id="end_time" value="">
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                                <div class="radio-selectors">
+                                    <label for="thursday">
+                                        <input onchange="show_hide_time(this);" id="thursday" type="checkbox" value="thursday" data-order="6">
+                                        <input class="day" type="hidden" value="thursday">
+                                        <span>الخميس</span>
+                                    </label>
+                                    <div class="row mb-3 d-none dayTimes" id="thursday_time">
+                                        <div class="col-6 col-lg-4">
+                                            <label for="start_time">من</label>
+                                            <input type="time" id="start_time" value="">
+                                        </div>
+                                        <div class="col-6 col-lg-4">
+                                            <label for="end_time">الي</label>
+                                            <input type="time" id="end_time" value="">
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="radio-selectors">
+                                    <label for="friday">
+                                        <input onchange="show_hide_time(this);" id="friday" type="checkbox" value="friday" data-order="7">
+                                        <input class="day" type="hidden" value="friday">
+                                        <span>الجمعة</span>
+                                    </label>
+                                    <div class="row mb-3 d-none dayTimes" id="friday_time">
+                                        <div class="col-6 col-lg-4">
+                                            <label for="start_time">من</label>
+                                            <input type="time" id="start_time" value="">
+                                        </div>
+                                        <div class="col-6 col-lg-4">
+                                            <label for="end_time">الي</label>
+                                            <input type="time" id="end_time" value="">
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <button type="submit" class="btn btn-standard add-schedule-button position-relative" id="addAppointment">
+                                    <div class="spinner-container">
+                                        <div class="db-spinner"></div>
+                                    </div>
+                                    حفظ
+                                </button>
+                            </div>
+                   
+
+                        </div>
+
+
+
+                    </div>
+
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+<script>
+    //var appointments = [];
+    var doctorAppointments = new Array();
+
+    $(document).ready(function () {
+        $("#addAppointments").addClass("active");
+
+        GetDoctorAppointments();
+        $(".spinner-container").hide();
+
+        $("#appointmentsForm").submit(function (e) {
+            e.preventDefault();
+
+        });
+
+
+        $("#addAppointment").on("click", function (event) {
+
+            //appointments = [];
+            var doctorAppointments = new Array();
+
+            var duration = $('#duration').val();
+
+            $(".radio-selectors .checked").each(function () {
+                var doctorAppointment = {};
+                
+                doctorAppointment.dayEn = $(this).children('input').eq(1).val();
+                doctorAppointment.dayAr = $(this).children('span').text();
+                doctorAppointment.order = $(this).children('input').data("order");
+                doctorAppointment.from = $('#' + doctorAppointment.dayEn + '_time').find('#start_time').val();
+                doctorAppointment.to = $('#' + doctorAppointment.dayEn + '_time').find('#end_time').val();
+                doctorAppointment.duration = duration;
+                doctorAppointment.doctorID = 0;
+                doctorAppointments.push(doctorAppointment);
+
+                //appointments.push({
+                //    dayEn: dayEn,
+                //    dayAr: dayAr,
+                //    from: from,
+                //    to: to,
+                //    duration: duration,
+                //});
+
+
+            });
+            console.log(doctorAppointments);
+
+            var flag = true;
+            doctorAppointments.forEach(function (item) {
+                if (item.from >= item.to || item.from == '' || item.to == '') {
+                    Swal.fire(
+                        {
+                            title: 'وقت الانتهاء لا يجب ان يكون أقل من وقت البدء',
+                            icon: 'info',
+                        })
+                    flag = false;
+                }
+            });
+
+            if (doctorAppointments.length == 0) {
+                Swal.fire(
+                    {
+                        title: 'يجب اختيار يوم واحد علي الاقل',
+                        icon: 'info',
+                    })
+            }
+            else if (flag && doctorAppointments.length > 0)
+            {
+                
+                $.ajax({
+                    url: '/Appointments/AddAppointments',
+                    type: "POST",
+                    dataType: "json",
+                    contentType: "application/json",
+                    data: JSON.stringify(doctorAppointments),
+                    beforeSend: function () {
+                        $('#addAppointment').prop('disabled', true);
+                        $(".spinner-container").show();
+
+                    },
+                    success: function (result) {
+                        if (result == "success") {
+                            $("#myModal").modal("hide");
+                            Notiflix.Notify.Success('تم الاضافه');
+                            Swal.fire({
+                                icon: 'success',
+                                title: 'تم الحفظ',
+                                showConfirmButton: false,
+                                timer: 1500
+                            })
+                        }
+                        else if (result == "exist") {
+                            Notiflix.Notify.Failure('حدث خطا ما يرجي اعاده المحاوله');
+                            alert(e.responseText);
+
+                        }
+
+                    },
+                    error: function (e) {
+                        Notiflix.Notify.Failure('حدث خطا ما يرجي اعاده المحاوله');
+                        alert(e.responseText);
+                    },
+                    complete: function () {
+
+                        $('#addAppointment').prop('disabled', false);
+                        $(".spinner-container").hide();
+
+                    },
+                });
+
+            }
+
+        });
+
+    });
+
+
+
+    function GetDoctorAppointments() {
+        $.ajax({
+            url: "/Appointments/GetDoctorAppointments",
+            type: "GET",
+            contentType: "application/json;charset=utf-8",
+            dataType: "json",
+            success: function (result) {
+                $.each(result, function (key, item) {
+                    $(".radio-selectors .radio-selectors").each(function () {
+                        var dayEn = $(this).find('input').val();
+                        var from = new Date(item.from);
+                        var to = new Date(item.to);
+
+                        const startTime = String(from.getHours()).padStart(2, '0') + ":" + String(from.getMinutes()).padStart(2, '0');
+                        const endTime = String(to.getHours()).padStart(2, '0') + ":" + String(to.getMinutes()).padStart(2, '0');
+
+
+                        if (item.dayEn == dayEn) {
+                            $('#' + dayEn + '_time').removeClass('d-none');
+                            $('#' + dayEn + '_time' + " input").prop('required', true);
+                            $("label[for='" + dayEn + "']").addClass('checked');
+                            $('#' + dayEn + '').prop('checked', true);
+                            $('#' + dayEn + '_time').find('#start_time').val(startTime);
+                            $('#' + dayEn + '_time').find('#end_time').val(endTime);
+
+                        }
+
+                        })
+
+
+                });
+
+            }
+        });
+    }
+
+
+    function show_hide_time(elem) {
+
+        var id = $(elem).attr("id");
+
+        if ($(elem).is(':checked')) {
+
+            //show the start end time
+            $('#' + id + '_time').removeClass('d-none');
+
+            //set the time inputs of the day to required
+            $('#' + id + '_time' + " input").prop('required', true);
+
+            $(elem).parent().addClass('checked');
+
+        } else {
+
+            //hide the start end time
+            $('#' + id + '_time').addClass('d-none');
+
+            //set the time inputs of the day to not required
+            $('#' + id + '_time' + " input").prop('required', false);
+
+            $(elem).parent().removeClass('checked');
+
+        }
+    }
+
+
+</script> 

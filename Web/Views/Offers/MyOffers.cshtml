@@ -1,0 +1,142 @@
+﻿@model IEnumerable<OfferViewModel>
+@{
+    ViewData["Title"] = "عروضي";
+    Layout = "_DoctorLayout";
+
+}
+
+<head>
+    <link rel="stylesheet" href="~/css/addOffer.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/myOffers.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/doctors.css" asp-append-version="true" />
+
+</head>
+
+<section class="offersSection mt-5">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 col-md-12">
+                <a class="btn btn-standard" asp-action="AddOffer"> اضافه عرض</a>
+                <br /><br />
+                @foreach (var item in Model)
+                {
+                    <div class="OffersDiv">
+                        <div class="offerCard">
+                            <div class="rigthSide">
+
+                                <div class="offerImage">
+                                    <a asp-controller="Offers" asp-action="offer" asp-route-id="@item.Id">
+                                        <img src="~/images/offers/@item.mainPhoto" />
+
+                                    </a>
+                                </div>
+
+                                <div class="offerContent">
+                                    <div class="title">
+                                        <p>@item.title</p>
+                                    </div>
+                                    <p class="subTitle">@item.subTitle</p>
+
+                                    <label class="doctorAddress detials">
+                                        <img src="../images/img/address.svg" class="preSvg" />
+                                        @item.address
+                                    </label>
+
+                                    <label class="doctorPrice detials">
+                                        <img src="../images/img/price.svg" class="preSvg" />
+                                        سعر العرض <span>@item.price جنيه</span>
+                                    </label>
+                                    <button type="submit" id="delete" class="btn btn-standard d-inline-block d-sm-none" onclick="Delete(@item.Id)" style="font-weight:700;width:15%"> حذف العرض</button>
+
+                                </div>
+                          
+                            </div>
+
+                            <div class="leftSide d-none d-sm-block" style="align-self: center;">
+                                <div style=" margin-left: 100px;">
+                                    <a href="javascript:void(0);" return="" false;="" onclick="Delete(@item.Id)">
+                                        <i class="fas fa-times" style="font-size: 30px;color: red;"></i>
+                                    </a>
+                                </div>
+
+                            </div>
+
+                        </div>
+                    </div>
+
+
+                }
+
+            </div>
+
+        </div>
+    </div>
+</section>
+
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+
+<script>
+    $(document).ready(function () {
+        $("#offers").addClass("active");
+
+    });
+
+    function Delete(id) {
+
+        Swal.fire({
+            title: 'هل انت متاكد ؟',
+            text: "سوف يتم حذف العرض نهائيا!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonText: 'حذف !',
+            cancelButtonText: 'الغاء'
+        }).then((result) => {
+            if (result.isConfirmed) {
+
+                $.ajax({
+                    type: "POST",
+                    dataType: false,
+                    url: "/Offers/DeleteOffer",
+                    data: { id: id },
+                    success: function (result) {
+                        if (result == "success") {
+                            Swal.fire(
+                                'تم الحذف!',
+                                'تم حذف العرض.',
+                                'success'
+                            )
+                            Notiflix.Notify.Success('تم الحذف');
+                            location.reload(true);
+                        }
+                    },
+                    error: function (e) {
+                        alert(e.responseText);
+                        Notiflix.Notify.Failure('حدث خطا ما يرجي اعاده المحاوله');
+                    }
+                });
+
+               
+            }
+        })
+
+    //    if (confirm("تاكيد الحذف")) {
+    //        $.ajax({
+    //            type: "POST",
+    //            dataType: false,
+    //            url: "/Offers/DeleteOffer",
+    //            data: { id: id },
+    //            success: function (data, xhr, status) {
+    //                Notiflix.Notify.Success('تم الحذف');
+
+    //            },
+    //            error: function (e) {
+    //                alert(e.responseText);
+    //                Notiflix.Notify.Failure('حدث خطا ما يرجي اعاده المحاوله');
+    //            }
+    //        });
+    //    }
+    }
+</script>

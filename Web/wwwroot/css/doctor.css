@@ -1,0 +1,463 @@
+﻿body {
+}
+
+section {
+    margin-bottom: 60px;
+}
+
+.headSection {
+    height: 350px;
+    background: linear-gradient( 180deg,#00b8cd 0,#01b5b6 100%);
+    text-align: center
+}
+
+    .headSection .Content {
+        padding-top: 120px;
+    }
+
+        .headSection .Content h2 {
+            color: #ffff;
+            padding-bottom: 8px;
+        }
+
+        .headSection .Content p {
+            color: #ffff;
+            font-weight: 500;
+        }
+
+
+.profileInformations {
+    margin-top: -160px;
+    text-align: center;
+}
+
+.doctorImg img {
+    height: 165px;
+    width: 165px;
+    border: #fff 5px solid;
+}
+
+.doctorName {
+    font-size: 22px;
+    font-weight: bold;
+    margin-top: 11px;
+}
+
+.doctorTitle {
+    font-weight: bold;
+    color: #00b8cd;
+    margin-top: -8px;
+}
+
+.doctorInfoSection {
+    margin-top: -30px
+}
+
+.stars-outer {
+    position: relative;
+    display: inline-block;
+    font-size: 32px;
+    margin-top: -16px
+}
+
+.stars-inner {
+    position: absolute;
+    top: 0;
+    right: 0;
+    white-space: nowrap;
+    overflow: hidden;
+    width: 60%;
+}
+
+.stars-outer::before {
+    content: "\2606  \2606  \2606  \2606  \2606 ";
+    font-family: "Font Awesome 5 pro";
+    font-weight: 400;
+    color: #ccc;
+}
+
+.stars-inner::before {
+    content: "\2605  \2605  \2605  \2605  \2605 ";
+    font-family: "Font Awesome 5 pro";
+    font-weight: 400;
+    color: #f8ce0b;
+}
+
+.infoCard, .RatingCard {
+    background: #fff;
+    margin: 26px 0 26px 0;
+    box-shadow: 0 20px 30px #00000005;
+    border-radius: 10px;
+    padding: 30px
+}
+
+.line-divider {
+    margin-right: 12px;
+    margin-top: 0;
+    width: 84px;
+    border-bottom: #00b8cd 3px solid;
+}
+
+.infoCard p {
+    margin: 14px 12px;
+    font-weight: Bold;
+    color: #5d5d5d;
+    line-height: 1.6
+}
+
+.tags span {
+    color: #00b8cd;
+    background: #6fc8d612;
+    padding: 5px 14px;
+    margin: 5px;
+    display: inline-block;
+    border-radius: 5px;
+    margin-top: 4px;
+    max-width: 430px;
+    font-weight: bold;
+}
+
+.clinic-img {
+    display: inline-block;
+    margin: 10px 5px;
+    position: relative;
+}
+
+    .clinic-img img {
+        width: 100px;
+        height: 85px;
+        cursor: pointer;
+        border-radius: 8px;
+    }
+
+    .clinic-img:nth-child(n+6) {
+        display: none;
+    }
+
+.overlay {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    right: 0;
+    top: 0;
+    display: none;
+    z-index: 50;
+    color: #fbfbfb;
+}
+
+    .overlay.active {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: #1cc7db7a;
+        color: #fbfbfb;
+        border-radius: 8px;
+        font-weight: bold;
+        font-size: 19px;
+        cursor: pointer;
+        pointer-events: none;
+    }
+
+.userRating .rigthSide {
+    float: right;
+}
+
+.userRating .leftSide {
+    float: left;
+    text-align: center;
+}
+
+.userInfo, .docotrInfo {
+    display: flex;
+    align-items: center;
+}
+
+.userReview {
+    display: flex;
+    align-items: center;
+    padding-bottom: 20px;
+    border-bottom: 1px solid #acb1B829;
+    margin-top: 20px;
+    justify-content: space-between;
+}
+
+.userReview:last-child {
+    border-bottom: none;
+}
+
+.userReview .rigthSide {
+    width: 50%;
+}
+
+.userInfo img {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+}
+
+.userInfo div {
+    margin: 9px;
+    margin-top: 17px;
+    margin-right: 11px;
+}
+
+.userInfo .userName {
+    font-size: 14px;
+    font-weight: bold;
+    margin-bottom: 1px;
+}
+
+.userInfo .commentTime {
+    font-size: 11px;
+    color: #00b8cd;
+    font-weight: 600;
+}
+
+.comment {
+    margin: 8px;
+    font-size: 16px;
+    font-weight: bold;
+    margin-right: 18px;
+    /*color: #5d5d5d;*/
+}
+
+.userReview .stars-outer {
+    font-size: 23px !important;
+}
+
+.userReview .leftSide p {
+    font-weight: 500;
+}
+
+.infoCard .views::before {
+    content: url(../images/img/view.svg);
+    display: block;
+    margin: 6px auto;
+    width: 35px;
+    height: 35px;
+}
+
+.colored {
+    color: #00b8cd;
+}
+
+.infoCard .price::before {
+    content: url(../images/img/price.svg);
+    display: block;
+    margin: 1px auto;
+    width: 40px;
+    height: 40px;
+}
+
+
+.priceAndViews {
+    text-align: center;
+    justify-content: space-evenly;
+    padding-bottom: 8px;
+    border-bottom: 1px solid #acb1B829;
+}
+
+.addressIcon {
+    content: url(../images/img/address.svg);
+    margin: 0;
+}
+
+.tblHead {
+    display: flex;
+    justify-content: center;
+}
+
+    .tblHead::before {
+        width: 40px;
+        height: 40px;
+        margin: 9px 0 0 9px;
+        content: url(../images/img/calender.svg);
+    }
+
+.tblTitleText h4 {
+    color: #00b8cd;
+    text-align: center;
+    font-weight: bold;
+    font-size: 16px;
+}
+
+.tblTitleText h5 {
+    color: #5d5d5d;
+    text-align: center;
+    font-weight: bold;
+    font-size: 13px;
+}
+
+.days {
+    display: flex;
+    margin-top: 25px;
+}
+
+.day {
+    background-color: #fdfdfd;
+    text-align: center;
+    margin: 10px;
+}
+
+    .day .columnTitle {
+        color: #00b8cd;
+        background-color: #f1f8fb;
+        border-radius: 4px;
+        margin: 0;
+        width: 100%;
+        padding: 8px;
+        font-size: 13px;
+    }
+
+    .day .columnTimes {
+        font-size: 14px
+    }
+
+.btnBook {
+    padding: 5px;
+    font-size: 13px;
+    font-weight: 500;
+    color: #f1f8fb !important;
+    background-color: #01b5b6 !important;
+    border-radius: 4px;
+    width: 100% !important;
+    display: inline-block;
+}
+
+.owl-item {
+    background: #fff;
+    border-top-right-radius: 25px;
+    border-top-left-radius: 25px;
+    box-shadow: none !important;
+}
+
+
+.owl-nav {
+    position: absolute;
+    top: 34%;
+    width: 100%;
+}
+
+.owl-next {
+    position: absolute;
+    left: -23px;
+}
+
+.owl-prev {
+    position: absolute;
+    right: -23px;
+}
+
+.owl-prev, .owl-next {
+    color: #00b8cd !important;
+    background-color: #f1f8fb !important;
+    border-radius: 50%;
+    padding: 34px !important;
+    height: 27px;
+    width: 27px;
+    transition: .3s all;
+}
+
+.ar {
+    font-size: 14px;
+    vertical-align: middle;
+}
+
+.owl-prev:hover, .owl-next:hover {
+    background-color: #0a8d8da3 !important;
+    color: #fff !important;
+}
+
+
+.input-group {
+    background: #f1f8fb;
+    border: none;
+    border-radius: 5px !important;
+    margin-bottom: 10px;
+    position: relative;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: stretch;
+    width: 100%;
+}
+.prepend-divider {
+    border-left: 3px solid #00b8CD33;
+    height: 24px;
+    margin: auto 1px auto 1px;
+}
+
+.input-group input, .input-group textarea {
+    color: #00b8cd;
+    background: #f1f8fb;
+    border: none;
+    font-weight: 600;
+    padding: 28px 16px;
+    border-radius: 5px !important;
+}
+.input-group-text {
+    color: #00b8cd;
+    background: 0 0;
+    border: none;
+    padding: 16px 32px 16px 16px;
+    font-size: 22px;
+}
+
+.form-control:focus {
+    background: #f1f8fb;
+    box-shadow: 0 0 0 0.2rem rgb(0 123 255 / 25%);
+}
+.stars a {
+    display: inline-block;
+    font-size: 0;
+    text-decoration: none;
+}
+
+.stars a:before {
+    position: relative;
+    font-size: 18px;
+    font-family: "Font Awesome 5 pro";
+    display: block;
+    content: "\f005";
+    color: #9e9e9e;
+    transition: all .1s;
+}
+
+.stars a:hover:before, .stars a:hover ~ a:before, .stars a.active:before, .stars a.active ~ a:before {
+    color: #f8ce0b;
+}
+
+#btnAddComment {
+    min-width: 140px;
+    background-color: #01b5b6;
+    border: 3px solid #01b5b6;
+    border-radius: 7px;
+    font: Bold 16px/27px Cairo;
+    color: #f1f8fb;
+    margin-left: 11px;
+    margin: auto 10.5px;
+}
+
+#btnAddComment:hover {
+    background-color: #0a8d8d;
+    color: #f1f8fb !important;
+}
+
+@media only screen and (max-width: 412px) {
+    .userReview .rigthSide {
+        width: 48% !important;
+    }
+
+    .userInfo, .docotrInfo {
+        display: table !important;
+    }
+    .commentBox {
+        display: table !important;
+    }
+        .commentBox div:first-child {
+            width:100% !important
+        }
+    .userInfo .commentTime {
+        font-size: 9px;
+    }
+
+}

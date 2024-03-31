@@ -1,0 +1,78 @@
+﻿@using Microsoft.AspNetCore.Http;
+
+<nav class="navbar navbar-expand-lg navbar-light myNav">
+    <div class="container-fluid">
+        <a class="navbar-brand" asp-controller="Home" asp-action="Index">
+            <img src="~/images/logo/logo.png" alt="logo" style="width:150px" />
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item" id="index">
+                    <a class="nav-link" asp-controller="Home" asp-action="Index">الرئسية</a>
+                </li>
+                <li class="nav-item" id="doctors">
+                    <a class="nav-link" asp-controller="Doctors" asp-action="Index">الاطباء</a>
+                </li>
+
+                <li class="nav-item" id="offers">
+                    <a class="nav-link" asp-controller="Offers" asp-action="Index" tabindex="-1" aria-disabled="true"> العروض</a>
+                </li>
+                <li class="nav-item" id="contact">
+                    <a class="nav-link" asp-controller="ContactUs" asp-action="Index" tabindex="-1" aria-disabled="true"> اتصل بنا</a>
+                </li>
+                @if (@Context.Session.GetString("UserID") == null)
+                {
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            إسبتالية للأطباء
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown" style="text-align: center;margin-bottom:10px">
+                            <a class="dropdown-item" asp-controller="Doctors" asp-action="Login">تسجيل دخول الأطباء</a>
+                            <a class="dropdown-item" asp-controller="Doctors" asp-action="Register">تسجيل اشتراك الأطباء</a>
+                        </div>
+                    </li>
+                }
+                else
+                {
+                    <li class="nav-item" id="myAppointments">
+                        <a class="nav-link" asp-controller="Appointments" asp-action="UserAppointments" tabindex="-1" aria-disabled="true"> مواعيدي </a>
+                    </li>
+                }
+            </ul>
+            @if (@Context.Session.GetString("UserID") == null)
+            {
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item mb-2">
+                        <a class="btn login" asp-controller="User" asp-action="Login">تسجيل الدخول</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="btn sign-up" asp-controller="User" asp-action="Register">التسجيل </a>
+                    </li>
+                </ul>
+            }
+            else
+            {
+                <ul class="navbar-nav ml-auto">
+
+                    <li class="nav-item dropdown" style=" background: #01b5b6; border-radius: 7px;">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="color: #f1f8fb;">
+
+                            <span style="margin-left:7px">@Context.Session.GetString("UserName")</span>
+                        </a>
+             
+                        <div class="dropdown-menu text-center" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item" asp-controller="User" asp-action="Logout">  تسجيل الخروج</a>
+                        </div>
+                    </li>
+                </ul>
+            }
+
+
+        </div>
+    </div>
+
+</nav>

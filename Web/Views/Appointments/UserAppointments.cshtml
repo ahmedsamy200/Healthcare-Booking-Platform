@@ -1,0 +1,114 @@
+﻿@model IEnumerable<AppointmentsViewModel>
+@using System.Globalization;
+
+@{
+    ViewData["Title"] = "مواعيدي";
+
+}
+
+<head>
+    <link rel="stylesheet" href="~/css/contactUs.css" asp-append-version="true" />
+</head>
+
+
+<section class="appointmentSection mt-5">
+    <div class="container">
+        <div class="infoCard">
+            <div class="appointmentDetails d-flex">
+                <img src="~/images/img/calender.svg" class="preSvg">
+                <p style="font-size:18px">  مواعيدي</p>
+            </div>
+            @foreach (var item in Model)
+            {
+                <div class="content mb-5" style="justify-content:center">
+                    <div class="info d-flex">
+                        <p class="infoText">اسم الطبيب</p>
+                        <p style="font-weight: bold;">@item.doctorName</p>
+                    </div>
+                    <div class="info d-flex">
+                        <p class="infoText"> الميعاد </p>
+                        <p style="font-weight: bold;">@item.dayAr <span id="selectedTime">@item.from.Value.ToString("hh:mm tt", new CultureInfo("ar-AE"))</span></p>
+                    </div>
+                    <div class="info d-flex">
+                        <p class="infoText">عنوان العيادة </p>
+                        <p style="font-weight: bold;">@item.address</p>
+                    </div>
+                    <div class="info d-flex">
+                        <p class="infoText"> الحاله </p>
+                        @if (item.status)
+                        {
+                            <p style="font-weight: bold;">تم الموافقة</p>
+
+                        }
+                        else
+                        {
+                            <p style="font-weight: bold;">قيد الانتظار</p>
+
+                        }
+                    </div>
+                    <div class="info d-flex">
+                        <button type="submit" id="delete" class="btn btn-standard " onclick="Delete(@item.Id)" style="font-weight:700;width:155px">الغاء الحجز</button>
+                    </div>
+                    <hr class="mt-5" />
+
+                </div>
+            }
+
+
+        </div>
+    </div>
+
+</section>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+<script>
+    $(document).ready(function () {
+        $("#myAppointments").addClass("active");
+
+
+    });
+
+    function Delete(id) {
+
+        Swal.fire({
+            title: 'هل انت متاكد ؟',
+            text: "سوف يتم الغاء الحجز نهائيا!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'حذف !',
+            cancelButtonText: 'الغاء'
+        }).then((result) => {
+            if (result.isConfirmed) {
+
+                $.ajax({
+                    type: "POST",
+                    dataType: false,
+                    url: "/Appointments/DeleteAppointment",
+                    data: { id: id },
+                    success: function (result) {
+                        if (result == "success") {
+                            Swal.fire(
+                                'تم الحذف!',
+                                'تم الغاء الحجز.',
+                                'success'
+                            )
+                            location.reload(true);
+                        }
+                    },
+                    error: function (e) {
+                        alert(e.responseText);
+                        Notiflix.Notify.Failure('حدث خطا ما يرجي اعاده المحاوله');
+                    }
+                });
+
+
+            }
+        })
+
+      
+    }
+
+</script> 

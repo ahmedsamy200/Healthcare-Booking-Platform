@@ -1,0 +1,51 @@
+﻿body {
+}
+
+.rigthSection {
+    background: linear-gradient( 180deg,#00b8cd 0,#01b5b6 100%);
+    z-index: 1000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding:0 !important; 
+    margin-top: 0;
+    width: 100% !important;
+     position: inherit !important; 
+    height: 100% !important;
+}
+
+.page {
+    max-width: 1000px !important;
+    margin: 0 !important; 
+    text-align: center;
+    padding: 70px 10px;
+}
+
+.bootstrap-select {
+    width: 80% !important;
+    display: inline !important;
+}
+
+.imagePreview {
+    width: 200px;
+    height: 150px;
+    cursor:pointer
+}
+
+.field {
+    margin-bottom: 36px;
+    text-align:right;
+
+}
+
+.input-group{
+    margin-bottom:10px;
+}
+
+.flag {
+    padding: 13px 19px;
+}
+
+.radio-group {
+    margin: 15px 0;
+}

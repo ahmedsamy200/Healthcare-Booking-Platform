@@ -1,0 +1,356 @@
+﻿@model DoctorViewModel
+@using System.Globalization;
+
+@{
+
+    ViewData["Title"] = "الحساب";
+}
+
+<head>
+    <link rel="stylesheet" href="~/css/doctor.css" asp-append-version="true" />
+
+</head>
+
+<section class="headSection">
+    <div class="container">
+        <div class="Content">
+            <h2>
+                الدكتور
+                @Model.name
+            </h2>
+            <p>
+                @Model.subDescription
+            </p>
+        </div>
+    </div>
+</section>
+
+<section class="profileSection">
+    <div class="container">
+        <div class="profileInformations">
+            <div class="doctorImg">
+                @{ 
+                    Model.photo = Model.photo ?? "default.jpg";
+                 }
+
+                <img src="~/images/doctors/@Model.photo" />
+            </div>
+            <p class="doctorName">
+                دكتور
+                @Model.name
+            </p>
+            <p class="doctorTitle">
+                دكتور
+
+                @Model.specializationName
+            </p>
+
+            <div class="stars-outer">
+                <div class="stars-inner" style="width:@ViewBag.rating%"></div>
+            </div>
+
+        </div>
+
+    </div>
+</section>
+
+<section class="doctorInfoSection">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-7 order-2 order-lg-1 ">
+                <div class="infoCard">
+                    <h4>معلومات عن الدكتور</h4>
+                    <div class="line-divider"></div>
+                    <p>
+                        @Model.description
+                    </p>
+                </div>
+
+                <div class="infoCard tags">
+                    <h4> خدمات العيادة </h4>
+                    <div class="line-divider mb-3"></div>
+                    @if (Model.services != null)
+                    {
+                        @foreach (string line in System.Text.RegularExpressions.Regex.Split(Model.services, ",").Where(s => s != string.Empty))
+
+                        {
+
+                            <span>
+                                @line
+                            </span>
+
+                        }
+                    }
+                </div>
+
+                <div class="infoCard">
+                    <h4>صور العيادة </h4>
+                    <div class="line-divider mb-3"></div>
+
+                    <div class="gallery hes-gallery">
+                        @foreach (var item in ViewBag.clinicPhotos)
+                        {
+                            <div class="clinic-img">
+                                <img src="~/images/clinics/@item.image" />
+                            </div>
+                        }
+
+                    </div>
+                </div>
+
+                <div class="RatingCard">
+                    <h4> تقييم المرضي </h4>
+                    <div class="line-divider mb-3"></div>
+
+                    <div class="userRating">
+                        @if (ViewBag.reviews == null)
+                        {
+                            <p style=" font-size: 19px; margin: 14px 12px; font-weight: Bold; color: #5d5d5d; line-height: 1.6;">لا توجد تقييمات</p>
+
+                        }
+                        else
+                        {
+                            @foreach (var item in ViewBag.reviews)
+                            {
+                                var rate = item.rate / 5 * 100;
+                                <div class="userReview">
+                                    <div class="rigthSide">
+                                        <div class="userInfo">
+                                            <img src=" https://cdn-icons-png.flaticon.com/512/3135/3135715.png" />
+                                            <div>
+                                                <p class="userName">@item.User.name </p>
+                                                <span class="commentTime"><i class="far fa-clock" style="padding-left: 5px;"></i>@item.date.ToString("dddd, dd MMMM yyyy", new CultureInfo("ar-AE"))</span>
+
+                                            </div>
+
+                                        </div>
+                                        <p class="comment">@item.comment</p>
+                                    </div>
+                                    <div class="leftSide">
+                                        <p>@item.rate/5</p>
+                                        <div class="stars-outer">
+                                            <div class="stars-inner" style="width:@rate%"></div>
+                                        </div>
+                                        <p>تقييم</p>
+                                    </div>
+                                </div>
+
+                            }
+
+                        }
+                    <div class="addCommentSection mt-5">
+                        <h5>اضف تقييم</h5>
+                        <div class="line-divider mb-3"></div>
+                        <div class="d-flex commentBox" style="align-items: center;">
+                            <div class="input-group" style="width:60%">
+                                <div class="input-group-prepend">
+                                    <label class="input-group-text" for="comment" style="position:absolute;top:18px">
+                                        <i class="far fa-quote-right" style="font-size:18px"></i>
+                                    </label>
+                                </div>
+                                <div class="prepend-divider" style="position:absolute;top:30px;right:70px"></div>
+                                <textarea class="form-control valid" placeholder="تعليقك هنا" rows="4" cols="50" style="width:85%;margin-right: 75px;resize:none" data-val="true" data-val-required="يجب ادخال تعليق " id="comment" aria-describedby="description-error" aria-invalid="false"></textarea>
+                            </div>
+                            <div style=" margin: 0 auto; direction: ltr;text-align:center">
+                                <p class="stars" >
+                                    <span>
+                                        <a class="star-5">5</a>
+                                        <a class="star-4">4</a>
+                                        <a class="star-3">3</a>
+                                        <a class="star-2">2</a>
+                                        <a class="star-1">1</a>
+                                    </span>
+                                </p>
+                                <h6>اضف تقييمك</h6>
+                            </div>
+                          
+                        </div>
+                        <button type="submit" id="btnAddComment" onclick="AddComment()">اضف التقييم</button>
+                        <input type="hidden" id="hdnRate"/>
+                        <input type="hidden" id="hdnID" value="@Model.Id"/>
+
+                    </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="col-md-5 order-1 order-lg-2">
+                <div class="infoCard">
+                    <div class="d-flex priceAndViews">
+                        <p class="views">عدد مرات المشاهدة <br><span class="colored">@Model.views</span></p>
+                        <p class="price">سعر الكشف <br><span class="colored">@Model.price جنيه </span></p>
+                    </div>
+
+                    <div class="d-flex justify-content-center align-content-center mt-2">
+                        <div class="addressIcon"></div>
+                        <p class="addressInfo"><span class="colored">عنوان العيادة</span><br>@Model.address</p>
+
+                    </div>
+                </div>
+                <!--table times for doctor-->
+                <div class="infoCard">
+                    <div class="tblHead">
+                        <div class="tblTitleText">
+                            <h4>احجز من مكانك وادفع لما توصل</h4>
+                            <h5>الدكتور يشترط الحجز المسبق</h5>
+                        </div>
+                    </div>
+
+                    <div class="days" style="justify-content:center">
+                        @if (ViewBag.DoctorAppointments == null)
+                        {
+                            <p style=" font-size: 20px; margin-right: 55px;">لا توجد مواعيد</p>
+                        }
+                        else
+                        {
+                            <div class="owl-carousel ">
+
+                                @foreach (var item in ViewBag.DoctorAppointments)
+                                {
+                                    <div class="day">
+                                        <div class="tblTimes">
+                                            <div class="dayContent">
+                                                <p class="columnTitle">@item.dayAr</p>
+                                                <div class="columnTimes">
+                                                    <p dir="rtl">من   @item.from.ToString("hh:mm tt", new CultureInfo("ar-AE"))</p>
+                                                    <p>الي @item.to.ToString("hh:mm tt", new CultureInfo("ar-AE"))</p>
+                                                </div>
+                                                <a href="/Appointments/BookAppointment/@item.Id" class="btnBook">احجز</a>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                }
+
+                            </div>
+
+                        }
+
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="https://unpkg.com/hes-gallery/dist/hes-gallery.min.js"></script>
+
+<script>
+    $(document).ready(function () {
+        $("#profile").addClass("active");
+        $('.gallery ').each(function () {
+            var imgNum = $(this).children().length;
+            var hiddenNum = imgNum - 5;
+            if (imgNum > 5) {
+                $(this).children().eq(4).append("<div class='overlay active'>" + hiddenNum + "+" + "<div>")
+            }
+        });
+
+        $('.owl-carousel').owlCarousel({
+            rtl: true,
+            loop: true,
+            autoplay: true,
+            navText: ["<i class='fal fa-long-arrow-right ar'></i>", "<i class='fal fa-long-arrow-left ar'></i>"],
+            autoplayTimeout: 5000,
+
+            nav: true,
+            responsive: {
+                0: {
+                    items: 1
+                },
+                412: {
+                    items: 2
+                },
+                600: {
+                    items: 2
+                },
+                720: {
+                    items: 1
+                },
+                1180: {
+                    items: 3
+                },
+                1185: {
+                    items: 3
+                }
+            }
+        })
+
+        $('.stars a').on('click', function () {
+            $('.stars a').removeClass('active');
+            $(this).addClass('active');
+            $('#hdnRate').val($(this).text());
+        });
+    })
+
+
+    HesGallery.setOptions({
+        wrapAround: true,
+        disableScrolling: true
+    })
+
+    function AddComment() {
+        var doctorID = $('#hdnID').val();
+        var rate = $('#hdnRate').val();
+        var comment = $('#comment').val();
+        if (rate == 0) {
+            Swal.fire({
+                icon: 'info',
+                title: 'يجيب تحدد عدد النجوم',
+                showConfirmButton: false,
+                timer: 1500
+            })
+            return false;
+        }
+        else {
+            $.ajax({
+                url: "/Doctors/AddComment?doctorID=" + doctorID +
+                    "&comment=" + comment +
+                    "&rate=" + rate,
+                type: "POST",
+                contentType: "application/json;charset=utf-8",
+                dataType: "json",
+                success: function (result) {
+                    if (result == "success") {
+                        Swal.fire({
+                            icon: 'success',
+                            title: 'تم الحفظ',
+                            showConfirmButton: false,
+                            timer: 1500
+                        })
+                        $('.hdnRate').val(0);
+                        $('#comment').val('');
+                        location.reload(true);
+
+                    }
+                    else if (result == "AddedBefor") {
+                        Swal.fire({
+                            icon: 'info',
+                            title: 'لقد قمت باظافه تقييم من قبل',
+                            showConfirmButton: false,
+                            timer: 1500
+                        })
+                    }
+                    else if (result == "fail") {
+                        Swal.fire({
+                            icon: 'info',
+                            title: 'عذرا تم خطا ما',
+                            showConfirmButton: false,
+                            timer: 1500
+                        })
+                    }
+                    else if (result == "GoToLogin") {
+                        window.location = "/User/login";
+                    }
+                }
+            });
+
+        }
+    }
+
+</script>

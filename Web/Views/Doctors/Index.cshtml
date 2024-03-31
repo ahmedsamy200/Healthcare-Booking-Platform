@@ -1,0 +1,513 @@
+﻿@model IEnumerable<DoctorViewModel>
+@using System.Globalization;
+
+@{
+    ViewData["Title"] = "الاطباء";
+}
+
+<head>
+    <link rel="stylesheet" href="~/css/doctors.css" asp-append-version="true" />
+
+</head>
+
+<section class="headSection">
+    <div class="container">
+        <div class="Content">
+            <h1>افضل الاطباء في مصر</h1>
+
+        </div>
+    </div>
+</section>
+
+<section class="searchSection" style="margin-bottom:140px">
+    <div class="container-fluid">
+        <div class="search-box">
+            <div class="header">
+                <p>احجز دكتور</p>
+            </div>
+
+            <div class="row" style="padding: 20px 40px 25px 0;">
+
+
+                <div class="col-xl col-md-6  mb-3">
+
+                    <select class="selectpicker" id="city" data-live-search="true" data-style="form-screen-picker City-picker" title="المحافظه" tabindex="-98">
+                        <option value="" disabled="">اختار المحافظه</option>
+                        <option value="" > الكل</option>
+                        @foreach (var item in ViewBag.cities)
+                        {
+                            <option value="@item.city">@item.city</option>
+                        }
+
+
+                    </select>
+                </div>
+
+                <div class="col-xl col-md-6  mb-3">
+
+                    <select class="selectpicker" id="doctor" data-live-search="true" data-style="form-screen-picker Doctor-picker" title="الطبيب" tabindex="-98">
+                        <option value="" disabled="">اسم الدكتور</option>
+                        <option value=""> الكل</option>
+
+                        @foreach (var item in Model)
+                        {
+                            <option value="@item.name">@item.name</option>
+                        }
+
+
+                    </select>
+
+                </div>
+                <div class="col-xl col-md-12 text-center">
+                    <button  onclick="LoadData()" type="submit" id="searchBtn" class="btn btn-standard search-box-button">
+                        بحث
+                    </button>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="doctorsSection">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-3 col-sm-12 filterSide toggleShow">
+                <div class="doctorsFilter ">
+
+                    <div class="backAndSearch closed">
+                        <div class="closeAside">
+                            <a href="#" class="btn asideBack">
+                                <i class="far fa-chevron-right"></i>
+                                العودة
+                            </a>
+                            <a href="#" onclick="LoadData()" class="btn asideBack">البحث</a>
+                        </div>
+                        <hr />
+                    </div>
+
+                    <div class="ContentContainer">
+                        <div class="filterTop">
+                            <p>حدد الدكتور بعناية</p>
+                            <hr />
+                        </div>
+
+                        <div class="filterGroup">
+                            <a class="btn filter-button" href="#collapseTitle" data-toggle="collapse" aria-expanded="true">التخصص</a>
+
+                            <div class="collapse show" id="collapseTitle"  style="height: 190px; overflow: auto;">
+                                <label for="AllTitles">
+                                    <input class="submitForm" type="radio" checked="" value="" id="" name="specialization">
+                                    الكل
+                                </label>
+                                @foreach (var item in ViewBag.specializations)
+                                {
+                                    <label for="@item.name">
+                                        <input class="submitForm" type="radio" id="@item.name" value="@item.Id" name="specialization">
+                                        @item.name
+                                    </label>
+                                }
+
+
+
+                            </div>
+
+                        </div>
+                        <hr />
+
+                        <div class="filterGroup">
+                            <a class="btn filter-button" href="#collapseGender" data-toggle="collapse" aria-expanded="true">النوع</a>
+
+                            <div class="collapse show" id="collapseGender" style="">
+                                <label for="AllGenders">
+                                    <input class="submitForm" type="radio" checked="" value="" id="AllGenders" name="gender">
+                                    الكل
+                                </label>
+                                <label for="male">
+                                    <input class="submitForm" type="radio" id="male" value="male" name="gender">
+                                    دكتور
+                                </label>
+                                <label for="female">
+                                    <input class="submitForm" type="radio" id="female" value="female" name="gender">
+                                    دكتوره
+                                </label>
+
+                            </div>
+
+                        </div>
+                        <hr />
+
+                        <div class="filterGroup">
+                            <a class="btn filter-button" href="#collapsePrice" data-toggle="collapse" aria-expanded="true">سعر الكشف</a>
+
+                            <div class="collapse show" id="collapsePrice" style="">
+                                <label for="AllPrices">
+                                    <input class="submitForm" type="radio" checked="" min="0" max="9999999" value="" id="AllPrices" name="price">
+                                    الكل
+                                </label>
+                                <label for="price1">
+                                    <input class="submitForm" type="radio" id="price1" min="0" max="50" value="1" name="price">
+                                    اقل من 50
+                                </label>
+                                <label for="price2">
+                                    <input class="submitForm" type="radio" id="price2" min="50" max="100" value="2" name="price">
+                                    من 50 حتي 100
+                                </label>
+                                <label for="price3">
+                                    <input class="submitForm" type="radio" id="price3" min="100" max="200" value="3" name="price">
+                                    من 100 حتي 200
+                                </label>
+                                <label for="price4">
+                                    <input class="submitForm" type="radio" id="price4" min="200" max="300" value="4" name="price">
+                                    من 200 حتي 300
+                                </label>
+                                <label for="price5">
+                                    <input class="submitForm" type="radio" id="price5" min="300" max="9999999" value="5" name="price">
+                                    اكثر من 300
+                                </label>
+
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <div class="col-xl col-md-12 text-center">
+                        <button type="submit" onclick="LoadData()" id="Search" class="btn btn-standard search-box-button search">
+                            بحث
+                        </button>
+
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="col-xl-9 col-sm-12">
+                <div class="topDiv">
+                    <div class="row">
+                        <div class="resultfounded col-xs-12 col-md-6 mb-2 text-center">
+                            <p>تم العثور على <span class="count">@Model.Count()</span> نتيجة بحث</p>
+
+                        </div>
+                        <div class="orderByOuter w-100 text-center">
+                            <div class="orderByInner  text-center">
+                                <select id="orderBy" class="selectpicker">
+                                    <option value="">الكل</option>
+                                    <option value="ratting">التقيييمات</option>
+                                    <option value="price">السعر</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="doctorsContainer">
+                    @foreach (var item in Model)
+                    {
+                        item.photo = item.photo ?? "default.jpg";
+                        <div class="doctorsDiv">
+                            <div class="doctorCard">
+                                <div class="rigthSide">
+
+                                    <div class="doctorImage">
+                                        <a href="Doctors/Doctor/@item.Id">
+                                            <img alt="img" src="../images/doctors/@item.photo" />
+
+                                        </a>
+                                    </div>
+
+                                    <div class="doctorContent">
+                                        <div class="nameAndRate">
+                                            <p>دكتور @item.name</p>
+                                            <div class="stars-outer">
+                                                <div class="stars-inner" style="width:@item.ratting%"></div>
+                                            </div>
+                                        </div>
+                                        <p class="doctorSubTitle">@item.subDescription</p>
+                                        <label class="doctorSpec detials">
+                                            <img alt="img" src="~/images/img/clinic.svg" class="preSvg" />
+                                            @item.specializationName
+                                        </label>
+
+                                        <label class="doctorAddress detials">
+                                            <img alt="img" src="~/images/img/address.svg" class="preSvg" />
+                                            @item.city
+                                        </label>
+
+                                        <label class="doctorPrice detials">
+                                            <img alt="img" src="~/images/img/price.svg" class="preSvg" />
+                                            سعر الكشف <span>@item.price جنيه</span>
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="leftSide d-none d-lg-block">
+                                    <!--table times for doctor-->
+                                    <div class="infoCard" style=" height: 100%;">
+
+                                        <div class="days " style="justify-content: center; height: 100%; align-items: center;">
+                                            @if (item.appointments == null)
+                                            {
+                                                <p style="font-size: 20px; margin-right: 55px;">لا توجد مواعيد</p>
+                                            }
+                                            else
+                                            {
+
+                                                <div class="owl-carousel ">
+                                                    @foreach (var appointment in item.appointments)
+                                                    {
+                                                        <div class="day">
+                                                            <div class="tblTimes">
+                                                                <div class="dayContent">
+                                                                    <p class="columnTitle"> @appointment.dayAr</p>
+                                                                    <div class="columnTimes">
+                                                                        <p dir="rtl">@appointment.from.Value.ToString("hh:mm tt", new CultureInfo("ar-AE"))</p>
+                                                                        <p>@appointment.to.Value.ToString("hh:mm tt", new CultureInfo("ar-AE"))</p>
+                                                                    </div>
+                                                                    <a href="/Appointments/BookAppointment/@appointment.Id" class="btnBook">احجز</a>
+                                                                </div>
+
+                                                            </div>
+                                                        </div>
+
+                                                    }
+
+
+                                                </div>
+
+                                            }
+
+                                        </div>
+
+
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+
+                    }
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+<div class="filter">
+    <i class="fad fa-filter"></i>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+<script>
+    $(document).ready(function () {
+        $("#doctors").addClass("active");
+ 
+        if ($(window).width() < 580) {
+            $('.nameAndRate').addClass("d-block");
+            $('.doctorsContainer').addClass("text-center");
+            $('.doctorCard').css({ "padding": "0px", "padding-top": "30px" });
+        
+        }
+
+        if ($(window).width() > 515) {
+            $('.resultfounded').removeClass("col-xs-12 col-md-6 mb-2 text-center");
+            $('.orderByOuter').removeClass("col-xs-12 text-center");
+            $('.orderByInner ').removeClass("text-center");
+            $('.orderByOuter').addClass("col-6");
+            $('.orderByInner').addClass("text-left");
+            $('.resultfounded').addClass("col-6");
+     
+        }
+
+        $('.owl-carousel').owlCarousel({
+            rtl: true,
+            loop: true,
+            autoplay: true,
+            navText: ["<i class='fal fa-long-arrow-right ar'></i>", "<i class='fal fa-long-arrow-left ar'></i>"],
+            autoplayTimeout: 3000,
+
+            nav: true,
+            responsive: {
+                0: {
+                    items: 1
+                },
+                412: {
+                    items: 2
+                },
+                600: {
+                    items: 1
+                },
+                720: {
+                    items: 2
+                },
+                1180: {
+                    items: 2
+                },
+                1385: {
+                    items: 3
+                }
+            }
+        })
+
+        $("#orderBy").change(function () {
+            LoadData();
+        });
+        $(".filter , .asideBack").on("click", function () {
+            $(".doctorsFilter").toggleClass("openAside");
+            $(".backAndSearch").toggleClass("closed");
+            $(".filterSide").css("display", "block");
+            $(".filterSide").toggleClass("toggleShow");
+        });
+    });
+
+    $(function () {
+        $('select').selectpicker();
+    });
+
+
+    function LoadData() {
+        var specialization = $('input[name=specialization]:checked').attr("id");
+        var gender = $('input[name=gender]:checked').val();
+        var minPrice = $('input[name=price]:checked').attr("min");
+        var maxPrice = $('input[name=price]:checked').attr("max");
+        var orderBy = $('#orderBy').val();
+        var city = $('#city').val();
+        var doctorName = $('#doctor').val();
+
+        $.ajax({
+            url: "/Doctors/GetFilterdDoctors?specialization=" + specialization +
+                "&gender=" + gender +
+                "&maxPrice=" + maxPrice +
+                "&orderBy=" + orderBy +
+                "&city=" + city +
+                "&doctorName=" + doctorName +
+                "&minPrice=" + minPrice,
+            type: "GET",
+            contentType: "application/json;charset=utf-8",
+            dataType: "json",
+            beforeSend: function () {
+                $('.prods').hide();
+                $('#loader').show();
+            },
+            success: function (result) {
+                var defultImg = "default.png";
+                var html = '';
+                $(".count").text(result.length);
+                
+                $.each(result, function (key, item) {
+                    item.subDescription = item.subDescription ?? " ";
+                    item.photo = item.photo ?? "default.jpg";
+                    html += '  <div class="doctorsDiv">';
+                    html += ' <div class="doctorCard">';
+                    html += ' <div class="rigthSide">';
+                    html += '<div class="doctorImage">';
+                    html += '<a  href="Doctors/Doctor/' + item.id + '"">';
+                    html += '<img alt="img" src="../images/doctors/' + item.photo + '" />';
+                    html += '</a>';
+                    html += '</div>';
+                    html += '<div class="doctorContent">';
+                    html += '<div class="nameAndRate">';
+                    html += ' <p>دكتور ' + item.name + '</p>';
+                    html += ' <div class="stars-outer">';
+                    html += '<div class="stars-inner" style="width:' + item.ratting +'%' +'">';
+                    html += '</div>';
+                    html += '</div>';
+                    html += '</div>';
+
+                    html += '<p class="doctorSubTitle">' + item.subDescription + '</p>';
+                    html += '<label class="doctorSpec detials">';
+                    html += '<img alt="img" src="../images/img/clinic.svg" class="preSvg" />';
+                    html += item.specializationName
+                    html += '</label>';
+
+                    html += '<label class="doctorAddress detials">';
+                    html += '<img alt="img" src="../images/img/address.svg" class="preSvg" />';
+                    html += item.city
+                    html += '</label>';
+
+                    html += '<label class="doctorPrice detials">';
+                    html += '<img alt="img" src="../images/img/price.svg" class="preSvg" />';
+                    html += ' سعر الكشف <span>' + item.price + ' جنيه</span>';
+                    html += '</label>';
+                    html += '</div>';
+                    html += ' </div>';
+
+                    html += '<div class="leftSide d-none d-lg-block">';
+                    html += '<div class="infoCard" style=" height: 100%;">';
+
+                    html += '<div class="days" style="justify-content: center; height: 100%; align-items: center;">';
+
+                    if (item.appointments == null) {
+                        html +='<p style="font-size: 20px; margin-right: 55px;">لا توجد مواعيد</p>';
+
+                    }
+                    else {
+                        html += '<div class="owl-carousel ">';
+                        $.each(item.appointments, function (index, appointment) {
+                            var from = new Date(appointment.from);
+                            var to = new Date(appointment.to);
+
+                            html += '<div class="day">';
+                            html += '<div class="tblTimes">';
+                            html += '<div class="dayContent">';
+                            html += '<p class="columnTitle">' + appointment.dayAr + '</p>';
+                            html += '<div class="columnTimes">';
+                            html += '<p dir="rtl">من   ' + from.toLocaleString('ar-US', { hour: 'numeric', minute: 'numeric', hour12: true }) + '</p>';
+                            html += '<p>الي ' + to.toLocaleString('ar-US', { hour: 'numeric', minute: 'numeric', hour12: true })+ '</p>';
+                            html += '</div>';
+                            html += '<a type="button" href="/Appointments/BookAppointment/' + appointment.id +'" class="btnBook">احجز</a>';
+                            html += '</div>';
+                            html += '</div>';
+                            html += '</div>';
+                        })
+                        html += '</div>';
+
+                    }
+                    html += '</div>';
+                    html += '</div>';
+                    html += '</div>';
+                    html += '</div>';
+                    html += '</div>';
+                    html += '</div>';
+                });
+                $('.doctorsContainer').html(html);
+                $('.owl-carousel').owlCarousel({
+                    rtl: true,
+                    loop: true,
+                    autoplay: true,
+                    navText: ["<i class='fal fa-long-arrow-right ar'></i>", "<i class='fal fa-long-arrow-left ar'></i>"],
+                    autoplayTimeout: 3000,
+
+                    nav: true,
+                    responsive: {
+                        0: {
+                            items: 1
+                        },
+                        412: {
+                            items: 2
+                        },
+                        600: {
+                            items: 1
+                        },
+                        720: {
+                            items: 2
+                        },
+                        1180: {
+                            items: 2
+                        },
+                        1385: {
+                            items: 3
+                        }
+                    }
+                })
+
+
+            }
+        });
+    }
+
+</script>

@@ -1,0 +1,267 @@
+﻿@model DoctorViewModel
+@{
+    ViewData["Title"] = "تعديل الحساب ";
+    Layout = "_DoctorLayout";
+
+}
+
+<head>
+    <link rel="stylesheet" href="~/css/editAccount.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/contactUs.css" asp-append-version="true" />
+
+</head>
+
+<section class="doctorInfoSection mt-5">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 col-md-12">
+                <div class="Content">
+                    <form id="doctorInfoForm" enctype="multipart/form-data">
+                        <h3> البيانات الشخصية</h3>
+
+                        <div class="row" style="margin-top:35px">
+                            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+
+                            <div class="col-md-12 field">
+                                <p style=" font: 600 20px/0px Almarai; padding: 15px;">الصورة الشخصية </p>
+                                <div class="field d-flex">
+                                    <div class="input-group image-group ">
+                                        <!-- Image Form Input -->
+                                        <input type="file" accept="image/jpg, image/jpeg" class="form-control-file" onchange="preview();" data-val="true" data-val-required="يجب اتخيار صوره " asp-for="photoUploaded">
+                                        <input type="hidden" id="doctorImgName">
+                                        <label class="info-group" for="OfferAvatar">
+                                            <p>اسحب الصورة هنا</p>
+                                            <p>أو انقر لاختيار الصورة</p>
+                                        </label>
+
+                                    </div>
+
+                                    <div class="img-preview">
+                                        <div class="img-wrapper doctorImg">
+                                            @{
+                                                Model.photo = Model.photo ?? "default.jpg";
+                                            }
+                                            <img src="~/images/doctors/@Model.photo" alt="" id="doctorImgPre">
+
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+
+                            <div class="col-md-12 field">
+                                <div class="input-group" id="userNameInput">
+                                    <div class="input-group-prepend">
+                                        <label class="input-group-text" for="name">
+                                            <i class="far fa-user" aria-hidden="true"></i>
+                                        </label>
+                                    </div>
+                                    <div class="prepend-divider"></div>
+                                    <input type="text" asp-for="name" autocomplete="off" class="form-control" placeholder="الاسم بالكامل" value="@Model.name" required>
+                                </div>
+                                <span asp-validation-for="name" class="text-danger"></span>
+
+                            </div>
+
+                            <div class="col-md-12 field">
+                                <div class="row">
+                                    <div class="col-10 phoneBox">
+                                        <div class="input-group" id="userPhoneInput">
+                                            <div class="input-group-prepend">
+                                                <label class="input-group-text" for="phone">
+                                                    <i class="fas fa-phone" aria-hidden="true"></i>
+                                                </label>
+                                            </div>
+                                            <div class="prepend-divider"></div>
+                                            <input type="tel" asp-for="phone" class="form-control" placeholder="رقم الهاتف" value="@Model.phone">
+                                        </div>
+                                        <span asp-validation-for="phone" class="text-danger"></span>
+
+                                    </div>
+                                    <div class="col-2">
+
+                                        <div class="flag">
+                                            <span>  20 +</span>
+                                            <img src="../images/img/egypt.png" />
+
+                                        </div>
+
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                            <div class="col-md-12 field">
+                                <div class="input-group" id="userSpeceficationInput">
+                                    <div class="input-group-prepend">
+                                        <label class="input-group-text" for="specializationID">
+                                            <span class="speciality-icon"></span>
+                                        </label>
+                                    </div>
+                                    <div class="prepend-divider"></div>
+                                    <div class="dropdown bootstrap-select">
+                                        <select class="selectpicker" asp-for="specializationID" required="" data-live-search="true" data-style="form-screen-picker" title="التخصص" tabindex="-98">
+                                            <option value="" disabled="">اختار التخصص</option>
+                                            @foreach (var item in ViewBag.specializations)
+                                            {
+                                                <option value="@item.Id">@item.name</option>
+                                            }
+
+
+                                        </select>
+                                    </div>
+                                </div>
+                                <span asp-validation-for="specializationID" class="text-danger"></span>
+
+                            </div>
+
+                            <div class="col-md-12 field">
+                                <div class="input-group" id="userEmailInput">
+                                    <div class="input-group-prepend">
+                                        <label class="input-group-text" for="doctorEmail">
+                                            <i class="far fa-envelope" aria-hidden="true"></i>
+                                        </label>
+                                    </div>
+                                    <div class="prepend-divider"></div>
+                                    <input type="email" name="email" id="doctorEmail" required="" value="@Model.email" class="form-control" placeholder="البريد الإلكتروني">
+
+                                </div>
+                                <span asp-validation-for="email" class="text-danger"></span>
+
+                            </div>
+
+                            <div class="col-md-12 field">
+                                <div class="radio-group">
+                                    <p id="UserGenderInput">النوع</p>
+                                    <div class="prepend-divider"></div>
+                                    <div class="gender">
+                                        <label for="UserGenderMale">
+                                            <input asp-for="gender" value="male" type="radio">
+                                            ذكر
+                                        </label>
+
+                                        <label for="UserGenderFemale">
+                                            <input asp-for="gender" value="female" type="radio">
+                                            أنثى
+                                        </label>
+                                    </div>
+                                </div>
+                                <span asp-validation-for="gender" class="text-danger"></span>
+
+                            </div>
+
+                   
+                            <div class="col-md-12 field">
+                                <div class="input-group">
+                                    <div class="input-group-prepend">
+                                        <label class="input-group-text" for="description" style="position:absolute;top:18px">
+                                            <i class="far fa-quote-right"></i>
+                                        </label>
+                                    </div>
+                                    <div class="prepend-divider" style="position:absolute;top:30px;right:70px"></div>
+                                    <textarea class="form-control" placeholder="وصف مختصر للتخصص " asp-for="subDescription" rows="4" cols="50" style="width:85%;margin-right: 75px;resize:none"></textarea>
+                                </div>
+                                <span asp-validation-for="subDescription" class="text-danger"></span>
+
+                            </div>
+
+                            <div class="col-md-12">
+                                <div class="button-group mb-5">
+                                    <button type="submit" id="add" class="btn btn-standard" style="font-weight:700;position:absolute;">
+                                        <div class="spinner-container">
+                                            <div class="db-spinner"></div>
+                                        </div>
+                                        حفظ
+
+                                    </button>
+                                </div>
+
+                            </div>
+
+                        </div>
+                    </form>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</section>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
+
+
+<script>
+    $(document).ready(function () {
+        $("#account").addClass("active");
+        $(".spinner-container").hide();
+
+
+        $("#add").on("click", function (event) {
+            $('#photoUploaded').rules('remove');  // removes all rules for this field
+
+            var validator = $("#doctorInfoForm").validate();
+            var flag = validator.form();
+            if (flag) {
+                Add();
+            }
+        });
+
+    })
+
+    function preview() {
+        document.getElementById('doctorImgPre').src = window.URL.createObjectURL(event.target.files[0])
+    }
+
+    function Add() {
+        $.ajax({
+            url: '/Doctors/UpdateAccount',
+            type: 'POST',
+            data: new FormData($("#doctorInfoForm")[0]),
+            processData: false,
+            contentType: false,
+            beforeSend: function () {
+                $('#add').prop('disabled', true);
+                $(".spinner-container").show();
+
+            },
+            success: function (result) {
+                if (result == "success") {
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'تم الحفظ',
+                        showConfirmButton: false,
+                        timer: 1500
+                    })
+                }
+                else if (result == "error") {
+                    Notiflix.Notify.Failure('حدث خطا ما');
+                    alert(e.responseText);
+
+                }
+
+            },
+            error: function (e) {
+                Notiflix.Notify.Failure('حدث خطا ما يرجي اعاده المحاوله');
+                alert(e.responseText);
+            },
+            complete: function () {
+
+                $('#add').prop('disabled', false);
+                $(".spinner-container").hide();
+
+            },
+        });
+    }
+
+
+
+</script>
