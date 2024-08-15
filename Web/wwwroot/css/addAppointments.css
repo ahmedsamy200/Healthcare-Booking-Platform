@@ -1,0 +1,138 @@
+﻿
+@font-face {
+    font-family: Almarai;
+    src: url(../fonts/Almarai-Regular.ttf)
+}
+
+
+.db-spinner {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background-color: transparent;
+    border: 3px solid #1e1d1d1c;
+    border-top-color: #ffffff;
+    border-bottom-color: #ffffff;
+    -webkit-animation: 1s spin linear infinite;
+    animation: 1s spin linear infinite;
+}
+
+.spinner-container {
+    display: inline-block;
+    margin-left: 15px;
+    position: absolute;
+    top: 9px;
+    right: 15%;
+}
+
+
+@keyframes spin {
+    from {
+        -webkit-transform: rotate(0deg);
+        transform: rotate(0deg);
+    }
+
+    to {
+        -webkit-transform: rotate(360deg);
+        transform: rotate(360deg);
+    }
+}
+
+
+.Content {
+    background-color: #fff;
+    box-shadow: 0 20px 30px #00000009;
+    padding: 37px 26px;
+    border-radius: 8px;
+}
+
+.input-group {
+    position: relative;
+    display: flex;
+    -webkit-box-pack: justify;
+    --ms-flex-pack: justify;
+    margin-bottom: 16px;
+    align-items: stretch;
+    width: 100%;
+    flex-wrap: wrap;
+    padding: 0px 30px;
+}
+    .input-group label, .radio-group > label {
+        min-width: 140px;
+        margin: auto 0;
+        margin-left: 20px;
+    }
+
+label {
+    user-select: none;
+    cursor: pointer;
+    font: Bold 20px/30px Almarai;   
+}
+
+
+input, textarea {
+    max-width: 503px;
+    background-color: #f1f8fb;
+    border: none;
+    padding: 13px 12px;
+    border-radius: 8px !important;
+    font: Bold 16px/27px Almarai;
+    color: #5d5d5d;
+    height: auto;
+}
+
+.input-group > .form-control {
+    position: relative;
+    min-width: 0;
+    margin-bottom: 0;
+    width: 35%;
+    flex: none;
+}
+
+
+.radio-group {
+/*    display: flex;
+*/    -webkit-box-pack: justify;
+    /* --ms-flex-pack: justify; */
+    margin-bottom: 12px;
+}
+
+ .radio-selectors, .tel-wrapper {
+    -webkit-box-flex: 1;
+    -ms-flex-grow: 1;
+    flex-grow: 1;
+    max-width: 503px;
+    margin-bottom:10px
+}
+
+ .radio-selectors > label {
+    min-width: 100px;
+}
+
+input[type=checkbox]:checked:before {
+    content: url(../images/img/radio-checked.svg);
+}
+
+input[type=checkbox]::before {
+    content: url(../images/img/radio-unchecked.svg);
+    visibility: visible;
+    position: absolute;
+    top: -5px;
+    left: 0;
+}
+
+input[type=checkbox] {
+    visibility: hidden;
+    position: relative;
+    margin-right: 10px;
+}
+
+button, input {
+    overflow: visible;
+}
+
+@media only screen and (max-width: 335px) {
+    .dayTimes div:first-child{
+        display:table !important
+    }
+}
