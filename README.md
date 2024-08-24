@@ -2,8 +2,8 @@
 A healthcare patient management application that allows patients to easily register, book, and manage their appointments with doctors, featuring administrative tools for scheduling, confirming, and canceling appointments.
 
 This is a healthcare platform where you can browse doctors, manage profiles, and book appointments, Patients can use the platform to easily schedule appointments with their doctors, saving time and effort.
-This is a healthcare platform where you can browse doctors, manage profiles, and book appointments, Patients can use the platform to easily schedule appointments with their doctors, saving time and effort. 
-Healthcare booking platform using onion architecture. 
+
+* Healthcare booking platform using onion architecture. 
 
  # 🛠️ Features
 
@@ -13,9 +13,13 @@ Healthcare booking platform using onion architecture.
 
 * **Update Profile:** Providing users with the ability to update their profiles keeps their information accurate and up to date.
 
+* **Book a New Appointment with Doctor:** Patients can schedule appointments with doctors at their convenience and can book multiple appointments.
+
 * **Doctor Application:** Allowing users to apply to become a doctor on the site expands the pool of medical professionals and adds value to the platform.
 
-* **Book a New Appointment with Doctor:** Patients can schedule appointments with doctors at their convenience and can book multiple appointments.
+* **Doctor Appointments:** Doctor has the ability to add his available appointments.
+
+* **Doctor Offers:** Doctor can an offer.
 
 * **Admin Approval for Doctor Requests:** Admin approval for doctor applications ensures that only qualified professionals are listed on the platform.
 
