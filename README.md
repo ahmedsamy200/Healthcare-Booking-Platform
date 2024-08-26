@@ -5,6 +5,8 @@ This is a healthcare platform where you can browse doctors, manage profiles, and
 
 * Healthcare booking platform using onion architecture. 
 
+**preview:** http://healthcareplateform.somee.com
+
  # 🛠️ Features
 
 * **Register as a Patient:** Users can sign up and create a personal profile as a patient.
